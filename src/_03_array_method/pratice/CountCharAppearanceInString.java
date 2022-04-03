@@ -2,7 +2,7 @@ package _03_array_method.pratice;
 
 import java.util.Scanner;
 
-public class CountCharInString {
+public class CountCharAppearanceInString {
     public static void main(String[] args) {
         String str = "international";
         Scanner scanner = new Scanner(System.in);
