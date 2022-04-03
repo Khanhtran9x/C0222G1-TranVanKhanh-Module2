@@ -2,7 +2,7 @@ package _03_array_method.pratice;
 
 import java.util.Scanner;
 
-public class TinhTongCacSoDuongCheoChinh {
+public class SumElementInDiagonal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập vào kích thước của ma trận vuông");

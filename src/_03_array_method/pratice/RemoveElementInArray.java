@@ -2,7 +2,7 @@ package _03_array_method.pratice;
 
 import java.util.Scanner;
 
-public class XoaPhanTuKhoiMang {
+public class RemoveElementInArray {
     public static void main(String[] args) {
         int[] arr = {3, 5, 1, 6, 9, 7};
         Scanner scanner = new Scanner(System.in);

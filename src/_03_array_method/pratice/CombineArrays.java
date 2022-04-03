@@ -3,7 +3,7 @@ package _03_array_method.pratice;
 import java.lang.reflect.Array;
 import java.util.Scanner;
 
-public class GopMang {
+public class CombineArrays {
     public static void main(String[] args) {
         int size1, size2, size3;
         int[] array1, array2, array3;

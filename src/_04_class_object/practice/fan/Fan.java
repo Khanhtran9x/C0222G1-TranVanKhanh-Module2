@@ -1,4 +1,4 @@
-package _04_class_object.practice.xay_dung_lop_fan;
+package _04_class_object.practice.fan;
 
 public class Fan {
     private int slow = 1;

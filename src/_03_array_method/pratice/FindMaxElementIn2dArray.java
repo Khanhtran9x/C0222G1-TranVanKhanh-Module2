@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class TimPhanTuLonNhatTrongMangHaiChieu {
+public class FindMaxElementIn2dArray {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập vào số cột của ma trận");

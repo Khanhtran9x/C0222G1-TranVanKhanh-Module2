@@ -2,7 +2,7 @@ package _02_loop.practice;
 
 import java.util.Scanner;
 
-public class HienThi20SoNguyenToDauTien {
+public class PrintFirst20PrimeNumber {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập số lượng số nguyên tố cần in ra");

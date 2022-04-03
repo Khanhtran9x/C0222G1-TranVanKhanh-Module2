@@ -2,7 +2,7 @@ package _03_array_method.pratice;
 
 import java.util.Scanner;
 
-public class TimGiaTriNhoNhatTrongMang {
+public class FindMinElementInArray {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập vào số phần tử của mảng");

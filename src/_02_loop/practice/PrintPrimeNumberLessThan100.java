@@ -2,7 +2,7 @@ package _02_loop.practice;
 
 import java.util.Scanner;
 
-public class HienThiCacSoNguyenToNhoHon100 {
+public class PrintPrimeNumberLessThan100 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int count;

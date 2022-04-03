@@ -1,4 +1,4 @@
-package _04_class_object.practice.phuong_trinh_bac_hai;
+package _04_class_object.practice.quadratic;
 
 import java.util.Scanner;
 
