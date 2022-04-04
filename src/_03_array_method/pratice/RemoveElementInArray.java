@@ -12,15 +12,15 @@ public class RemoveElementInArray {
         }
         System.out.println("");
         System.out.println("Nhập phần tử cần xóa trong mảng: ");
-        int input = scanner.nextInt();
-        removeElement(arr, input);
+        int element = scanner.nextInt();
+        removeElement(arr, element);
 
     }
 
-    public static void removeElement(int[] arr, int input) {
+    public static void removeElement(int[] arr, int element) {
         int count = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == input) {
+            if (arr[i] == element) {
                 count++;
                 for (int j = i; j < arr.length - 1; j++) {
                     arr[j] = arr[j + 1];
