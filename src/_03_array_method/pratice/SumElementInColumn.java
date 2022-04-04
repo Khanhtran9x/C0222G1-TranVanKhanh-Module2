@@ -16,12 +16,17 @@ public class SumElementInColumn {
                 array[i][j] = scanner.nextDouble();
             }
         }
+        sumElementInColumn(array, row, col);
+    }
+
+    public static void sumElementInColumn(double[][] array, int row, int col) {
+        Scanner scanner = new Scanner(System.in);
         double sum = 0;
         System.out.println("Nhập vào cột cần tính tổng: ");
         int inputCol = scanner.nextInt();
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                if (j == inputCol){
+                if (j == inputCol) {
                     sum += array[i][j];
                 }
             }

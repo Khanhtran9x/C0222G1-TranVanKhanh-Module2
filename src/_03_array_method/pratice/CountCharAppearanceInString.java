@@ -8,6 +8,9 @@ public class CountCharAppearanceInString {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập vào kí tự cần kiểm tra số lần xuất hiện");
         char input = scanner.next().charAt(0);
+       countCharAppearance(str, input);
+    }
+    public static void countCharAppearance(String str, char input){
         int count = 0;
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == input) {

@@ -3,20 +3,20 @@ package _test;
 import java.util.Arrays;
 
 public class test {
+    static public int X = 2;
+
+    static {
+        X = 1;
+    }
+
+    static public void method() {
+        X = 5;
+    }
+
     public static void main(String[] args) {
-        int[] array1 = {1, 2, 3, 4, 5, 6};
-        int[] array2 = {7, 8, 9, 10, 11};
-        int length = array1.length + array2.length;
-        int[] result = new int[length];
-        for (int i = 0; i < array1.length; i++) {
-            result[i] = array1[i];
-
-
-        }
-        for (int j = 0; j < array2.length; j++) {
-            result[j + array1.length] = array2[j];
-
-        }
-        System.out.println(Arrays.toString(result));
+        test o = new test();
+        test.method();
+        test.X = 10;
+        System.out.printf("x=%d, y=%d", o.X, test.X);
     }
 }

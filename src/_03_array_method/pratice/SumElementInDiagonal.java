@@ -14,6 +14,9 @@ public class SumElementInDiagonal {
                 array[i][j] = scanner.nextDouble();
             }
         }
+      sumElementInDiagonal(array, num);
+    }
+    public static void sumElementInDiagonal(double[][] array, int num){
         double sum = 0;
         for (int i = 0; i < num; i++) {
             sum += array[i][i];

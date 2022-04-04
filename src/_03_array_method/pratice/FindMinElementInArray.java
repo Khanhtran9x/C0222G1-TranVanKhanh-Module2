@@ -14,6 +14,10 @@ public class FindMinElementInArray {
             arr[i] = scanner.nextInt();
             i++;
         }
+        findMinElement(arr, size);
+    }
+
+    public static void findMinElement(int[] arr, int size) {
         int min = arr[0];
         for (int j = 0; j < size; j++) {
             if (arr[j] < min) {

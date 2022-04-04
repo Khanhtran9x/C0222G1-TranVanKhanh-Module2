@@ -12,12 +12,20 @@ public class FindMaxElementIn2dArray {
         System.out.println("Nhập vào số hàng của ma trận");
         int row = scanner.nextInt();
         double[][] array = new double[row][col];
-        double max = array[0][0];
-        String index = 0 + " " + 0;
-        for (int i = 0; i < row; i++) {
+               for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 System.out.print("Giá trị của phần tử thứ " + i + " " + j + ": ");
                 array[i][j] = scanner.nextDouble();
+            }
+        }
+        findMaxElement(array, col, row);
+    }
+
+    public static void findMaxElement(double[][] array, int col, int row) {
+        String index = 0 + " " + 0;
+        double max = array[0][0];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 if (array[i][j] > max) {
                     max = array[i][j];
                     index = i + " " + j;
