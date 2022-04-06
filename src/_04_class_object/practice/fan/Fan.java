@@ -1,9 +1,9 @@
 package _04_class_object.practice.fan;
 
 public class Fan {
-    private int slow = 1;
-    private int medium = 2;
-    private int fast = 3;
+    private final int SLOW = 1;
+    private final int MEDIUM = 2;
+    private final int FAST = 3;
     private int speed = 1;
     private boolean on;
     private double radius = 5;
@@ -12,29 +12,19 @@ public class Fan {
     public Fan() {
     }
 
-    public int getSlow() {
-        return slow;
+    public int getSLOW() {
+        return SLOW;
     }
 
-    public void setSlow(int slow) {
-        this.slow = slow;
+    public int getMEDIUM() {
+        return MEDIUM;
     }
 
-    public int getMedium() {
-        return medium;
+
+    public int getFAST() {
+        return FAST;
     }
 
-    public void setMedium(int medium) {
-        this.medium = medium;
-    }
-
-    public int getFast() {
-        return fast;
-    }
-
-    public void setFast(int fast) {
-        this.fast = fast;
-    }
 
     public int getSpeed() {
         return speed;
