@@ -15,6 +15,7 @@ public class ShapeTest {
         System.out.println("Shapes after scaling");
         double percent = Math.random() * 100;
         System.out.println("Percentage of scaling is " + percent);
+
         for (Shape shape: shapes) {
             shape.resize(percent);
             System.out.println(shape);
