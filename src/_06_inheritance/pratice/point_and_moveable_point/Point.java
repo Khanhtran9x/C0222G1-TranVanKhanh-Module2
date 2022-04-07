@@ -33,11 +33,11 @@ public class Point {
         this.x = x;
         this.y = y;
     }
-    public String getXY() {
+    public float[] getXY() {
         float[] arr = new float[2];
         arr[0] = this.x;
         arr[1] = this.y;
-        return Arrays.toString(arr);
+        return arr;
     }
 
     @Override

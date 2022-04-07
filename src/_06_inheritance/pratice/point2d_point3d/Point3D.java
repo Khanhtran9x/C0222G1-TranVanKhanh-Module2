@@ -45,12 +45,12 @@ public class Point3D extends Point2D {
         this.setY(y);
         this.z = z;
     }
-    public String getXYZ(){
+    public float[] getXYZ(){
         float[] arr = new float[3];
         arr[0] = this.getX();
         arr[1] = this.getY();
         arr[2] = this.getZ();
-        return Arrays.toString(arr);
+        return arr;
     }
 
     @Override

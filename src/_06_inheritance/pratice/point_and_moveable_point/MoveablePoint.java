@@ -46,7 +46,7 @@ public class MoveablePoint extends Point {
     }
 
     @Override
-    public String getXY() {
+    public float[] getXY() {
         return super.getXY();
     }
 
@@ -83,11 +83,11 @@ public class MoveablePoint extends Point {
                 ", ySpeed=" + ySpeed +
                 '}';
     }
-    public String move(){
+    public MoveablePoint move(){
         float x = this.getX() + this.xSpeed;
         float y = this.getY() + this.ySpeed;
         this.setX(x);
         this.setY(y);
-        return this.getXY();
+        return this;
     }
 }
