@@ -1,60 +1,32 @@
 package _00_exercise.student;
 
-public class Student {
-    private String name;
-    private int age;
-    private String address;
-    private double point;
+public class Student extends Person {
+    private int point;
 
-    public Student() {
+    public Student(String name, int age, String gender) {
+        super(name, age, gender);
     }
 
-    public Student(String name, int age, String address, double point) {
-        this.name = name;
-        this.age = age;
-        this.address = address;
+    public Student(String name, int age, String gender, int point) {
+        super(name, age, gender);
         this.point = point;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public double getPoint() {
+    public int getPoint() {
         return point;
     }
 
-    public void setPoint(double point) {
+    public void setPoint(int point) {
         this.point = point;
     }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", address='" + address + '\'' +
-                ", point=" + point +
+        return "Student{" + "name=" + super.getName()
+                + ", age=" + super.getAge()
+                + ", gender=" + super.getGender()
+                + ", point=" + point +
                 '}';
     }
 }
