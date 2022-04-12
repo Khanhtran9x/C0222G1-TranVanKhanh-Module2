@@ -38,9 +38,4 @@ public class Circle extends Shape {
                 + ", area="
                 + this.getArea();
     }
-
-    @Override
-    public void howToColor() {
-
-    }
 }

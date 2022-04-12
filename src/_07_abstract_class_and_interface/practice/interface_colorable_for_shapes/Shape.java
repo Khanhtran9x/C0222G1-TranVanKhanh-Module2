@@ -1,6 +1,6 @@
 package _07_abstract_class_and_interface.practice.interface_colorable_for_shapes;
 
-public abstract class Shape implements Colorable{
+public abstract class Shape{
     private String color = "green";
     private boolean filled = true;
 
@@ -36,6 +36,4 @@ public abstract class Shape implements Colorable{
                 + (isFilled() ? "filled" : "not filled");
     }
 
-    @Override
-    public abstract void howToColor();
 }

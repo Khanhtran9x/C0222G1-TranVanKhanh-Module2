@@ -13,8 +13,10 @@ public class ColorableTest {
         }
         System.out.println("Shapes after coloring");
         for (Shape shape: shapes) {
-            System.out.println(shape);
-            shape.howToColor();
+            if (shape instanceof Square){
+                Square square = (Square) shape;
+                square.howToColor();
+            }
         }
     }
 }

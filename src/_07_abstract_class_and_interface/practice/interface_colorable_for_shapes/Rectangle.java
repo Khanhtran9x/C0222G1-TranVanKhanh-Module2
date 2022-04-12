@@ -52,8 +52,4 @@ public class Rectangle extends Shape{
                 + this.getArea();
     }
 
-    @Override
-    public void howToColor() {
-
-    }
 }
