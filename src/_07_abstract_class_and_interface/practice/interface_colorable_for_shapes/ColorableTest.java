@@ -13,9 +13,9 @@ public class ColorableTest {
         }
         System.out.println("Shapes after coloring");
         for (Shape shape: shapes) {
-            if (shape instanceof Square){
-                Square square = (Square) shape;
-                square.howToColor();
+            if (shape instanceof Colorable){
+                Colorable colorable = (Square) shape;
+                colorable.howToColor();
             }
         }
     }
