@@ -1,9 +1,11 @@
 package _11_stack_queue.exercise.reverse_integer_array;
 import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Stack;
 
-public class Main {
+public class ReverseIntegerArray {
     public static void main(String[] args) {
-        MyStack<Integer> myStack = new MyStack();
+        Stack<Integer> myStack = new Stack<>();
         int[] array = {1, 3, 7, 7, 3, 4, 9};
         System.out.println("Mảng ban đầu là: " + Arrays.toString(array));
         for (int i = 0; i < array.length; i++) {
@@ -14,15 +16,19 @@ public class Main {
         }
         System.out.println("Mảng sau khi đảo ngược là: "+Arrays.toString(array));
 
-        MyStack<String> myStrStack = new MyStack();
-        String[] arr = {"one", "two", "three", "four", "five"};
-        System.out.println("Mảng ban đầu là: " + Arrays.toString(arr));
+        Stack<String> myStrStack = new Stack<>();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập vào chuỗi cần đảo ngược");
+        String string = scanner.nextLine();
+        String[] arr = string.split(" ");
+
         for (int i = 0; i < arr.length; i++) {
             myStrStack.push(arr[i]);
         }
         for (int i = 0; i < arr.length; i++) {
             arr[i] = myStrStack.pop();
         }
-        System.out.println("Mảng sau khi đảo ngược là: "+Arrays.toString(arr));
+        String result = String.join(" ", arr);
+        System.out.println("Chuỗi sau khi đảo ngược là: "+ result);
     }
 }

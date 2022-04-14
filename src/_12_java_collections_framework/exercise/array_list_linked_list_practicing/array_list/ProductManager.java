@@ -103,7 +103,7 @@ public class ProductManager {
     }
 
     private static void sortAscending(ArrayList<Product> productArr) {
-        DescendingSort descendingSort = new DescendingSort();
+        DescendingOrderSort descendingSort = new DescendingOrderSort();
         Collections.sort(productArr, descendingSort);
     }
 }

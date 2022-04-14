@@ -2,14 +2,15 @@ package _10_DSA.exercise.array_list;
 
 import java.util.Arrays;
 
-public class MyList<E>{
+public class MyList<E> {
     private int size = 0;
     private static final int DEFAULT_CAPACITY = 10;
     private E elements[];
 
     public MyList() {
-        elements = (E[])new Object[DEFAULT_CAPACITY];
+        elements = (E[]) new Object[DEFAULT_CAPACITY];
     }
+
     public MyList(E[] e) {
         for (int i = 0; i < e.length; i++)
             this.add(e[i]);
@@ -22,11 +23,13 @@ public class MyList<E>{
         elements[index] = e;
         size++;
     }
+
     public boolean add(E e) {
         ensureCapa();
         elements[size++] = e;
         return true;
     }
+
     public int size() {
         return size;
     }
@@ -44,28 +47,35 @@ public class MyList<E>{
         size--;
         return e;
     }
+
     public boolean contains(E e) {
         for (int i = 0; i < size; i++)
             if (e.equals(elements[i]))
                 return true;
         return false;
     }
-    public E clone(E[] e){
+
+    public E clone(E[] e) {
         elements = e;
-        return (E)elements;
+        return (E) elements;
     }
+
     public int indexOf(E e) {
         for (int i = 0; i < size; i++)
             if (e.equals(elements[i])) return i;
         return -1;
     }
+
     public E get(int index) {
         checkIndex(index);
         return elements[index];
     }
+
     private void ensureCapa() {
-        int newSize = elements.length * 2;
-        elements = Arrays.copyOf(elements, newSize);
+        if (size > elements.length){
+            int newSize = elements.length * 2;
+            elements = Arrays.copyOf(elements, newSize);
+        }
     }
 
 

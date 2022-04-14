@@ -2,7 +2,7 @@ package _11_stack_queue.exercise.demerging;
 
 import java.util.*;
 
-public class Demerging {
+public class DemergingTest {
     public static void main(String[] args) {
         Queue<Employee> NAM = new LinkedList<>();
         Queue<Employee> NU = new LinkedList<>();
