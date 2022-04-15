@@ -11,7 +11,6 @@ public class ProductTest {
         productArr.add(product1);
         productArr.add(product2);
         int choice = -1;
-        Collections.max
 
         while (choice != 6) {
             System.out.println("Menu");
