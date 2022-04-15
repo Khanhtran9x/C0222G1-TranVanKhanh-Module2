@@ -1,18 +1,17 @@
 package _12_java_collections_framework.exercise.array_list_linked_list_practicing.linked_list;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 
 public class ProductTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        LinkedList<Product> productArr = new LinkedList<Product>();
+        List<Product> productArr = new LinkedList<>();
         Product product1 = new Product("Vinamilk", "VNM", 9000);
         Product product2 = new Product("Cocacola", "COC", 8000);
         productArr.add(product1);
         productArr.add(product2);
         int choice = -1;
+        Collections.max
 
         while (choice != 6) {
             System.out.println("Menu");

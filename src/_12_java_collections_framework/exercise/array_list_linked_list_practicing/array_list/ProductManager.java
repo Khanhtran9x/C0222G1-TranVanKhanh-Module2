@@ -2,11 +2,12 @@ package _12_java_collections_framework.exercise.array_list_linked_list_practicin
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductManager {
 
-    public static void addProduct(ArrayList<Product> productArr){
+    public static void addProduct(List<Product> productArr){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập tên sản phẩm muốn thêm");
         String productName = scanner.nextLine();
@@ -14,16 +15,22 @@ public class ProductManager {
         String productID = scanner.nextLine();
         System.out.println("Nhập giá sản phẩm muốn thêm");
         double productPrice = Double.parseDouble(scanner.nextLine());
+        for (Product product: productArr) {
+            if (product.getProductId().equals(productID)){
+                System.out.println("Sản phẩm đã có, xin mời nhập sản phẩm khác");
+                addProduct(productArr);
+            }
+        }
         Product product = new Product(productName, productID, productPrice);
-
         productArr.add(product);
         System.out.println("Đã thêm sản phẩm thành công!!");
     }
 
-    public static void editProductById(ArrayList<Product> productArr){
+    public static void editProductById(List<Product> productArr){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập ID sản phẩm muốn sửa");
         String productID = scanner.nextLine();
+        int count = 0;
 
         for (int i = 0; i < productArr.size(); i++) {
          if (productArr.get(i).getProductId().equals(productID)){
@@ -33,53 +40,63 @@ public class ProductManager {
              String productId = scanner.nextLine();
              System.out.println("Nhập lại giá mới của sản phẩm");
              double productPrice =  Double.parseDouble(scanner.nextLine());
-
              Product product = new Product(productName, productID, productPrice);
              productArr.add(i, product);
-         } else {
-             System.out.println("ID vừa nhập vào không tồn tại");
+             count++;
+             break;
          }
+        }
+
+        if (count == 0){
+            System.out.println("ID vừa nhập vào không tồn tại");
         }
     }
 
-    public static void removeProductById(ArrayList<Product> productArr) {
+    public static void removeProductById(List<Product> productArr) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập ID sản phẩm muốn xóa");
         String productID = scanner.nextLine();
+        int count = 0;
 
         for (Product product: productArr) {
             if (product.getProductId().equals(productID)) {
                 productArr.remove(product);
                 System.out.println("Đã xóa thành công!!");
+                count++;
                 break;
-            } else {
-                System.out.println("ID vừa nhập vào không tồn tại");
             }
+        }
+
+        if (count == 0){
+            System.out.println("ID vừa nhập vào không tồn tại");
         }
     }
 
-    public static void displayProductList(ArrayList<Product> productArr){
+    public static void displayProductList(List<Product> productArr){
         for (Product product: productArr) {
             System.out.println(product.toString());
         }
     }
 
-    public static void findProductByName(ArrayList<Product> productArr){
+    public static void findProductByName(List<Product> productArr){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập tên sản phẩm muốn tìm");
         String productName = scanner.nextLine();
+        int count = 0;
 
         for (Product product: productArr) {
             if (product.getProductName().equals(productName)){
                 System.out.println("Kết quả tìm kiếm là: ");
                 System.out.println(product.toString());
-            } else {
-                System.out.println("Tên của sản phẩm vừa nhập vào không tồn tại");
+                count++;
             }
+        }
+        if (count == 0){
+            System.out.println("Tên của sản phẩm vừa nhập vào không tồn tại");
         }
     }
 
-    public static void sortProductByPrice(ArrayList<Product> productArr){
+    public static void sortProductByPrice(List<Product> productArr){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Chọn cách thức sắp xếp");
         System.out.println("1. Sắp xếp tăng dần");
@@ -96,13 +113,15 @@ public class ProductManager {
         }
     }
 
-    private static void sortDescending(ArrayList<Product> productArr) {
+    private static void sortAscending(List<Product> productArr) {
         AscendingComparator ascendingComparator = new AscendingComparator();
         Collections.sort(productArr, ascendingComparator);
     }
 
-    private static void sortAscending(ArrayList<Product> productArr) {
-        DescendingComparator descendingComparator = new DescendingComparator();
-        Collections.sort(productArr, descendingComparator);
+    private static void sortDescending(List<Product> productArr) {
+        DescendingComparator ascendingComparator = new DescendingComparator();
+        Collections.sort(productArr, ascendingComparator);
     }
+
+
 }
