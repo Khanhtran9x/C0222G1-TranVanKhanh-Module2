@@ -1,8 +1,8 @@
-package _12_java_collections_framework.exercise.array_list_linked_list_practicing.linked_list;
+package _12_java_collections_framework.exercise.array_list_linked_list_practicing.array_list;
 
 import java.util.Comparator;
 
-public class DescendingSort implements Comparator<Product> {
+public class DescendingComparator implements Comparator<Product> {
     @Override
     public int compare(Product o1, Product o2) {
         if (o1.getProductPrice() > o2.getProductPrice()) {

@@ -2,16 +2,14 @@ package _12_java_collections_framework.exercise.array_list_linked_list_practicin
 
 import java.util.Comparator;
 
-public class AscendingOrderSort implements Comparator<Product> {
+public class DescendingComparator implements Comparator<Product> {
     @Override
     public int compare(Product o1, Product o2) {
-        if (o1.getProductPrice() < o2.getProductPrice()){
+        if (o1.getProductPrice() > o2.getProductPrice()) {
             return 1;
-        }
-        else if (o1.getProductPrice() > o2.getProductPrice()){
+        } else if (o1.getProductPrice() < o2.getProductPrice()) {
             return -1;
-        }
-        else {
+        } else {
             return 0;
         }
     }

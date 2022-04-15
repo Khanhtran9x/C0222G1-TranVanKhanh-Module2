@@ -14,7 +14,6 @@ public class ProductManager {
         String productID = scanner.nextLine();
         System.out.println("Nhập giá sản phẩm muốn thêm");
         double productPrice = Double.parseDouble(scanner.nextLine());
-
         Product product = new Product(productName, productID, productPrice);
 
         productArr.add(product);
@@ -98,12 +97,12 @@ public class ProductManager {
     }
 
     private static void sortDescending(ArrayList<Product> productArr) {
-        AscendingOrderSort ascendingOrderSort = new AscendingOrderSort();
-        Collections.sort(productArr, ascendingOrderSort);
+        AscendingComparator ascendingComparator = new AscendingComparator();
+        Collections.sort(productArr, ascendingComparator);
     }
 
     private static void sortAscending(ArrayList<Product> productArr) {
-        DescendingOrderSort descendingSort = new DescendingOrderSort();
-        Collections.sort(productArr, descendingSort);
+        DescendingComparator descendingComparator = new DescendingComparator();
+        Collections.sort(productArr, descendingComparator);
     }
 }

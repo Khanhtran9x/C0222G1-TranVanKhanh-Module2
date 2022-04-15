@@ -1,6 +1,5 @@
 package _12_java_collections_framework.exercise.array_list_linked_list_practicing.linked_list;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -99,12 +98,12 @@ public class ProductManager {
     }
 
     private static void sortDescending(LinkedList<Product> productArr) {
-        AscendingOrderSort ascendingOrderSort = new AscendingOrderSort();
-        Collections.sort(productArr, ascendingOrderSort);
+        AscendingComparator ascendingComparator = new AscendingComparator();
+        Collections.sort(productArr, ascendingComparator);
     }
 
     private static void sortAscending(LinkedList<Product> productArr) {
-        DescendingSort descendingSort = new DescendingSort();
-        Collections.sort(productArr, descendingSort);
+        DescendingComparator descendingComparator = new DescendingComparator();
+        Collections.sort(productArr, descendingComparator);
     }
 }
