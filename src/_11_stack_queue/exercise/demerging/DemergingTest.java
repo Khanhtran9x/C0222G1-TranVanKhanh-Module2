@@ -4,8 +4,8 @@ import java.util.*;
 
 public class DemergingTest {
     public static void main(String[] args) {
-        Queue<Employee> NAM = new LinkedList<>();
-        Queue<Employee> NU = new LinkedList<>();
+        Queue<Employee> Male = new LinkedList<>();
+        Queue<Employee> Female = new LinkedList<>();
 
         Employee[] employees = new Employee[5];
         employees[0] = new Employee("Nhung", false, 18);
@@ -22,18 +22,18 @@ public class DemergingTest {
 
         for (Employee item : employees) {
             if (item.isGender()){
-                NAM.add(item);
+                Male.add(item);
             } else {
-                NU.add(item);
+                Female.add(item);
             }
         }
 
         List<Employee> orderedList = new ArrayList<>();
-        while (NU.size() > 0){
-            orderedList.add(NU.remove());
+        while (Female.size() > 0){
+            orderedList.add(Female.remove());
         }
-        while (NAM.size() > 0){
-            orderedList.add(NAM.remove());
+        while (Male.size() > 0){
+            orderedList.add(Male.remove());
         }
         System.out.println("------------");
         System.out.println("Danh sách nhân sự sau khi sắp xếp lại là: ");

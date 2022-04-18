@@ -85,7 +85,7 @@ public class ProductManager {
         int count = 0;
 
         for (Product product: productArr) {
-            if (product.getProductName().equals(productName)){
+            if (product.getProductName().contains(productName)){
                 System.out.println("Kết quả tìm kiếm là: ");
                 System.out.println(product.toString());
                 count++;
