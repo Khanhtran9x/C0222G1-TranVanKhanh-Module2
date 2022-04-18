@@ -6,32 +6,28 @@ import java.util.Scanner;
 public class ConsecutiveString {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        LinkedList<Character> max = new LinkedList<>();
-        LinkedList<Character> list = new LinkedList<>();
+        LinkedList<Character> maxString = new LinkedList<>();
+        LinkedList<Character> listString = new LinkedList<>();
 
         System.out.print("Nhập chuỗi cần tìm: ");
         String string = input.nextLine();
 
-
         for (int i = 0; i < string.length(); i++) {
-            if (list.size() > 1 && string.charAt(i) <= list.getLast() &&
-                    list.contains(string.charAt(i))) {
-                list.clear();
+            if (listString.size() > 1){
+                if (string.charAt(i) <= listString.getLast() && listString.contains(string.charAt(i))){
+                    listString.clear();
+                }
             }
-
-            list.add(string.charAt(i));
-
-            if (list.size() > max.size()) {
-                max.clear();
-                max.addAll(list);
+            listString.add(string.charAt(i));
+            if (maxString.size() < listString.size()){
+                maxString.clear();
+                maxString.addAll(listString);
             }
         }
-
-
-        for (Character ch : max) {
-            System.out.print(ch);
+        for (Character character : maxString) {
+            System.out.print(character);
         }
-        System.out.println();
+
     }
 
 }
