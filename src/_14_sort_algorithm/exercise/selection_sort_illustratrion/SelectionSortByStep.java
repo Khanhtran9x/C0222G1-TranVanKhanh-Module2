@@ -1,4 +1,4 @@
-package _14_sort_algorithm.exercise.selection_sort_illustatrion;
+package _14_sort_algorithm.exercise.selection_sort_illustratrion;
 
 import java.util.Scanner;
 

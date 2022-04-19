@@ -1,6 +1,8 @@
 package _17_IO_binary_file_serialization.exercise.manage_product;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private int productCode;
     private String productName;
     private String productBrand;
@@ -43,5 +45,15 @@ public class Product {
 
     public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productCode=" + productCode +
+                ", productName='" + productName + '\'' +
+                ", productBrand='" + productBrand + '\'' +
+                ", productPrice=" + productPrice +
+                '}';
     }
 }

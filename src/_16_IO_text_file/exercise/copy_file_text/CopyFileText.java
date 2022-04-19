@@ -38,10 +38,10 @@ public class CopyFileText {
         }
     }
 
-    public void copyToNewFile(String sourceFile, String destinationFile) {
+    public void copyToNewFile(String sourcePath, String destinationPath) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader(sourceFile));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(destinationFile));
+            BufferedReader br = new BufferedReader(new FileReader(sourcePath));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(destinationPath));
             String line = "";
             int countChar = 0;
             while ((line = br.readLine()) != null) {
