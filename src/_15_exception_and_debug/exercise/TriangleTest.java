@@ -25,7 +25,7 @@ public class TriangleTest {
 
     }
     public static void checkTriangleSide(double a, double b, double c) throws IllegalTriangleException{
-        if (a + b > c && a + c > b && b + c > a) {
+        if (a + b > c && a + c > b && b + c > a && a > 0 && b > 0 && c > 0) {
             System.out.println("Ba cạnh vừa nhập vào tạo nên được một hình tam giác");
         } else {
             throw new IllegalTriangleException("Ba cạnh vừa nhập vào không thể tạo thành một tam giác");
