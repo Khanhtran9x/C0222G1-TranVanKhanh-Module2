@@ -21,6 +21,8 @@ public class TriangleTest {
             System.err.println("Nhập sai kiểu dữ liệu, xin mời nhập lại");
         } catch (IllegalTriangleException e){
             System.err.println(e.getMessage());
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
     }
