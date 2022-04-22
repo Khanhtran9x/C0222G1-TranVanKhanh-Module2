@@ -40,12 +40,13 @@ public class ReadCsvFile {
 
     public static void displayCountry(List<String[]> listStringArr){
         List<Country> countryList = new ArrayList<>();
+        Country country;
         for (String[] item: listStringArr) {
-            Country country = new Country(Integer.parseInt(item[0]), item[1], item[2]);
+            country = new Country(Integer.parseInt(item[0]), item[1], item[2]);
             countryList.add(country);
         }
-        for (Country country: countryList) {
-            System.out.println(country.toString());
+        for (Country item: countryList) {
+            System.out.println(item.toString());
         }
     }
 
