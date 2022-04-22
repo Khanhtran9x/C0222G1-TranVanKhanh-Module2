@@ -30,15 +30,15 @@ public class ProductTest {
 
             switch (choice) {
                 case 1:
-                    displayProductList(readDataFromFile(path));
+                    displayProductList(path);
                     break;
                 case 2:
-                    productList.add( inputNewProduct());
+                    productList.add(inputNewProduct());
                     writeToFile(path, productList);
                     System.out.println("Thêm sản phẩm thành công");
                     break;
                 case 3:
-                    searchProductInfo(readDataFromFile(path));
+                    searchProductInfo(path);
                     break;
             }
         }
@@ -87,25 +87,27 @@ public class ProductTest {
         return productList;
     }
 
-    public static void displayProductList(List<Product> products){
-        for (Product product: products) {
+    public static void displayProductList(String path) {
+        List<Product> productList = readDataFromFile(path);
+        for (Product product : productList) {
             System.out.println(product);
         }
     }
 
-    public static void searchProductInfo(List<Product> products){
+    public static void searchProductInfo(String path) {
+        List<Product> productList = readDataFromFile(path);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập tên sản phẩm cần tìm kiếm");
         String productName = scanner.nextLine();
         int count = 0;
-        for (Product product: products) {
-            if (product.getProductName().contains(productName)){
+        for (Product product : productList) {
+            if (product.getProductName().contains(productName)) {
                 System.out.println(product.toString());
                 count++;
                 break;
             }
         }
-        if (count == 0){
+        if (count == 0) {
             System.out.println("Tên sản phẩm vừa nhập vào không có trong file");
         }
     }
