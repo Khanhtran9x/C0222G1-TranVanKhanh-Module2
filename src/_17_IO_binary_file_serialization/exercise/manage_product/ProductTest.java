@@ -33,8 +33,7 @@ public class ProductTest {
                     displayProductList(path);
                     break;
                 case 2:
-                    productList.add(inputNewProduct());
-                    writeToFile(path, productList);
+                    addProduct(path);
                     System.out.println("Thêm sản phẩm thành công");
                     break;
                 case 3:
@@ -71,6 +70,13 @@ public class ProductTest {
         int productPrice = scanner.nextInt();
         Product product = new Product(productCode, productName, productBrand, productPrice);
         return product;
+    }
+
+    public static void addProduct(String path){
+        List<Product> productList = readDataFromFile(path);
+        Product product = inputNewProduct();
+        productList.add(product);
+        writeToFile(path, productList);
     }
 
     public static List<Product> readDataFromFile(String path) {
