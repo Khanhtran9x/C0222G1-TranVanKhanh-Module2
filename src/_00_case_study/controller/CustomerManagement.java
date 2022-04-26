@@ -1,8 +1,11 @@
 package _00_case_study.controller;
 
+import _00_case_study.service.impl.CustomerServiceImpl;
+
 import java.util.Scanner;
 
 public class CustomerManagement {
+    public static CustomerServiceImpl customerService = new CustomerServiceImpl();
     public static void customerManagement() {
         Scanner scanner = new Scanner(System.in);
         int choice = -1;
@@ -33,14 +36,18 @@ public class CustomerManagement {
     }
 
     private static void returnToMainMenu() {
+        FuramaController.displayMainMenu();
     }
 
     private static void editCustomers() {
+        customerService.edit();
     }
 
     private static void addNewCustomers() {
+        customerService.addNew();
     }
 
     private static void displayListCustomers() {
+        customerService.display();
     }
 }

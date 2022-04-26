@@ -1,8 +1,11 @@
 package _00_case_study.controller;
 
+import _00_case_study.service.impl.EmployeeServiceImpl;
+
 import java.util.Scanner;
 
 public class EmployeeManagement {
+    public static EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
     public static void employeeManagement() {
         Scanner scanner = new Scanner(System.in);
         int choice = -1;
@@ -13,7 +16,7 @@ public class EmployeeManagement {
                     "3\tEdit employee\n" +
                     "4\tReturn main menu\n" +
                     "5.\tExit\n");
-            System.out.println("Nhập vào lựa chọn: ");
+            System.out.println("Input your choice: ");
             choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -32,15 +35,20 @@ public class EmployeeManagement {
         }
     }
 
+    private static void displayListEmployees() {
+       employeeService.display();
+    }
+
     private static void returnToMainMenu() {
+        FuramaController.displayMainMenu();
     }
 
     private static void editEmployees() {
+        employeeService.edit();
     }
 
     private static void addNewEmployees() {
+        employeeService.addNew();
     }
 
-    private static void displayListEmployees() {
-    }
 }
