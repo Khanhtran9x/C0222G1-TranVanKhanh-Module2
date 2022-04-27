@@ -16,7 +16,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void display() {
-        customerList = (List<Customer>) ReadAndWrite.read(path);
+        customerList = (List<Customer>) ReadAndWrite.readCustomerCsv(path);
         for (Customer customer: customerList) {
             System.out.println(customer.toString());
         }
@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
             Customer customer = new Customer(id, name, dateOfBirth, address, gender, idCard, email, type);
 
             customerList.add(customer);
-            ReadAndWrite.write(customerList, path);
+            ReadAndWrite.writeCustomerCsv(customerList, path);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,6 +1,8 @@
 package _00_case_study.model;
 
-public class Employee extends Person{
+import java.io.Serializable;
+
+public class Employee extends Person implements Serializable {
     private int level;
     private String position;
     private int salary;
@@ -34,5 +36,12 @@ public class Employee extends Person{
                 ", position=" + position +
                 ", salary=" + salary +
                 ')';
+    }
+
+    @Override
+    public String toStringToWrite() {
+        return this.getId() + "," + this.getName() + "," + this.getDateOfBirth() + "," + this.getAddress() +
+                "," + this.isGender() + "," + this.getIdCard() + "," + this.getEmail() + "," + this.level +
+                "," + this.position + "," + this.salary;
     }
 }

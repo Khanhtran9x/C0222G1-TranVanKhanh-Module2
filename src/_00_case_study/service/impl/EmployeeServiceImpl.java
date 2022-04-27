@@ -2,8 +2,10 @@ package _00_case_study.service.impl;
 
 import _00_case_study.model.Employee;
 import _00_case_study.service.EmployeeService;
+import _00_case_study.utils.ReadAndWrite;
 import _00_case_study.utils.RegexData;
 
+import javax.xml.xpath.XPath;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,9 +14,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public static final String REGEX_BIRTH_DAY = "(([0-2][0-9])|([3][0-1]))[\\/](([0][1-9])|([1][0,2]))[\\/]\\d{4}";
     static List<Employee> employeeList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
+    String path = "src\\_00_case_study\\data\\employee.csv";
 
     @Override
     public void display() {
+        employeeList = ReadAndWrite.readEmployeeCsv(path);
         for (Employee employee: employeeList) {
             System.out.println(employee.toString());
         }
@@ -65,6 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        ReadAndWrite.writeEmployeeCsv(employeeList, path);
     }
 
     @Override

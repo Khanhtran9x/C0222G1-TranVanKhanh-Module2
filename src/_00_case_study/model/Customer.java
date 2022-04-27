@@ -22,4 +22,11 @@ public class Customer extends Person implements Serializable {
                 ", type=" + type +
                 ')';
     }
+
+    @Override
+    public String toStringToWrite() {
+        return this.getId() + "," + this.getName() + "," + this.getDateOfBirth() + "," + this.getAddress() +
+                "," + this.isGender() + "," + this.getIdCard() + "," + this.getEmail() + "," + this.type;
+    }
+
 }

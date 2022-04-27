@@ -85,4 +85,5 @@ public abstract class Person {
                 ", gender=" + gender +
                 '}';
     }
+    public abstract String toStringToWrite();
 }
