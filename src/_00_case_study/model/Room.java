@@ -20,4 +20,9 @@ public class Room extends Facility{
                 ", free bonus service=" + freeBonusService +
                 '}';
     }
+
+    @Override
+    public String toStringToWrite() {
+        return null;
+    }
 }

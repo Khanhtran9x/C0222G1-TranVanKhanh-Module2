@@ -5,11 +5,11 @@ public abstract class Person {
     private String name;
     private String dateOfBirth;
     private String address;
-    private boolean gender;
+    private String gender;
     private String idCard;
     private String email;
 
-    public Person(int id, String name, String dateOfBirth, String address, boolean gender, String idCard, String email) {
+    public Person(int id, String name, String dateOfBirth, String address, String gender, String idCard, String email) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -51,11 +51,11 @@ public abstract class Person {
         this.address = address;
     }
 
-    public boolean isGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

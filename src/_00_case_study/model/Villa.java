@@ -27,4 +27,11 @@ public class Villa extends Facility{
                 ", floor=" + floor +
                 '}';
     }
+
+    @Override
+    public String toStringToWrite() {
+        return this.getFacilityId() + "," + this.getServiceName() + "," + this.getUseArea() + "," + this.getRentalStyle() +
+                "," + this.getMaxRentalPeople() + "," + this.getRentalStyle() +
+                "," + this.villaStandard + "," + this.poolArea + "," + this.floor;
+    }
 }

@@ -3,7 +3,7 @@ package _00_case_study.model;
 import java.io.Serializable;
 
 public class Employee extends Person implements Serializable {
-    private int level;
+    private String level;
     private String position;
     private int salary;
 
@@ -11,10 +11,10 @@ public class Employee extends Person implements Serializable {
                     String name,
                     String dateOfBirth,
                     String address,
-                    boolean gender,
+                    String gender,
                     String idCard,
                     String email,
-                    int level,
+                    String level,
                     String position,
                     int salary) {
         super(id, name, dateOfBirth, address, gender, idCard, email);
@@ -29,7 +29,7 @@ public class Employee extends Person implements Serializable {
                 ", name=" + this.getName() +
                 ", age="  + this.getDateOfBirth() +
                 ", address=" + this.getAddress() +
-                ", gender=" + this.isGender() +
+                ", gender=" + this.getGender() +
                 ", id card=" + this.getIdCard() +
                 ", email=" + this.getEmail() +
                 ", level=" + level +
@@ -41,7 +41,7 @@ public class Employee extends Person implements Serializable {
     @Override
     public String toStringToWrite() {
         return this.getId() + "," + this.getName() + "," + this.getDateOfBirth() + "," + this.getAddress() +
-                "," + this.isGender() + "," + this.getIdCard() + "," + this.getEmail() + "," + this.level +
+                "," + this.getGender() + "," + this.getIdCard() + "," + this.getEmail() + "," + this.level +
                 "," + this.position + "," + this.salary;
     }
 }

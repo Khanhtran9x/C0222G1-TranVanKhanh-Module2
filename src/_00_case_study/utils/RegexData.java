@@ -1,5 +1,7 @@
 package _00_case_study.utils;
 
+import _00_case_study.model.Customer;
+import _00_case_study.model.Employee;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -9,6 +11,38 @@ import java.util.regex.Pattern;
 
 public class RegexData {
     static Scanner scanner = new Scanner(System.in);
+    static final String REGEX_BIRTH_DAY = "(([0-2][0-9])|([3][0-1]))[\\/](([0][1-9])|([1][0,2]))[\\/]\\d{4}";
+    static final String REGEX_STR = "[A-Z][a-z]+";
+    static final String REGEX_ID_CARD = "\\d+";
+    static final String REGEX_EMAIL = "^[A-Z|a-z|0-9|\\_|\\.]{6}[@][A-Z|a-z|0-9]{5,15}[\\.][A-Z|a-z]{2,5}";
+
+    public static Customer inputNewCustomer() {
+        int id = inputId();
+        String name = inputName();
+        String dateOfBirth = inputDateOfBirth();
+        String address = inputAddress();
+        String gender = inputGender();
+        String idCard = inputCustomerIdCard();
+        String email = inputEmail();
+        String type = inputCustomerType();
+
+        return new Customer(id, name, dateOfBirth, address, gender, idCard, email, type);
+    }
+
+    public static Employee inputNewEmployee() {
+        int id = inputId();
+        String name = inputName();
+        String dateOfBirth = inputDateOfBirth();
+        String address = inputAddress();
+        String gender = inputGender();
+        String idCard = inputCustomerIdCard();
+        String email = inputEmail();
+        String level = inputEmployeeLevel();
+        String position = inputEmployeePosition();
+        int salary = inputEmployeeSalary();
+
+        return new Employee(id, name, dateOfBirth, address, gender, idCard, email, level, position, salary);
+    }
 
     public static String regexStr(String temp, String regex, String error) {
         boolean check = true;
@@ -23,16 +57,18 @@ public class RegexData {
         return temp;
     }
 
-    public static String regexAge(String temp, String regex){
+    public static String inputDateOfBirth() {
+        System.out.println("Input Customer Age:");
+        String dateOfBirth = scanner.nextLine();
         boolean check = true;
-        while (check){
-            try{
-                if (Pattern.matches(regex, temp)){
+        while (check) {
+            try {
+                if (Pattern.matches(REGEX_BIRTH_DAY, dateOfBirth)) {
                     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    LocalDate age = LocalDate.parse(temp, dateTimeFormatter);
+                    LocalDate age = LocalDate.parse(dateOfBirth, dateTimeFormatter);
                     LocalDate now = LocalDate.now();
                     int current = Period.between(age, now).getYears();
-                    if (current > 18 && current < 100){
+                    if (current > 18 && current < 100) {
                         check = false;
                     } else {
                         throw new AgeException("Your age is not permitted");
@@ -43,9 +79,196 @@ public class RegexData {
                 }
             } catch (AgeException e) {
                 System.out.println(e.getMessage());
-                temp = scanner.nextLine();
+                dateOfBirth = scanner.nextLine();
             }
         }
-        return temp;
+        return dateOfBirth;
+    }
+
+    public static int inputId() {
+        System.out.println("Input Customer ID:");
+        int id;
+        while (true) {
+            try {
+                id = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number");
+            }
+        }
+        return id;
+    }
+
+    public static String inputName() {
+        System.out.println("Input Customer Name:");
+        String name = scanner.nextLine();
+        boolean check = true;
+        do {
+            if (name.matches(REGEX_STR)) {
+                check = false;
+            } else {
+                System.out.println("Please input again, the first letter must be upper case");
+                name = scanner.nextLine();
+            }
+        } while (check);
+        return name;
+    }
+
+    public static String inputAddress() {
+        System.out.println("Input Customer Address:");
+        String address = scanner.nextLine();
+        return address;
+    }
+
+    public static String inputGender() {
+        System.out.println("Choose Customer Gender: 1. Male  2. Female");
+        String gender;
+        int choice;
+        while (true) {
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice == 1) {
+                    gender = "Male";
+                    return gender;
+                } else if (choice == 2) {
+                    gender = "Female";
+                    return gender;
+                } else {
+                    System.err.println("Your choice does not match our options");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number which matches our options");
+            }
+        }
+    }
+
+    public static String inputCustomerIdCard() {
+        System.out.println("Input Customer ID Card:");
+        String idCard = scanner.nextLine();
+        boolean check = true;
+        do {
+            if (idCard.matches(REGEX_ID_CARD)) {
+                check = false;
+            } else {
+                System.out.println("Wrong input, please input id card in number format");
+                idCard = scanner.nextLine();
+            }
+        } while (check);
+        return idCard;
+    }
+
+    public static String inputEmail() {
+        System.out.println("Input Customer email:");
+        String email = scanner.nextLine();
+        boolean check = true;
+        do {
+            if (email.matches(REGEX_EMAIL)) {
+                check = false;
+            } else {
+                System.out.println("Wrong input, please input email which complies format xxxx@xxxx.xx");
+                email = scanner.nextLine();
+            }
+        } while (check);
+        return email;
+    }
+
+    public static String inputCustomerType() {
+        System.out.println("Input Customer type:");
+        String customerType = scanner.nextLine();
+        boolean check = true;
+        do {
+            if (customerType.matches(REGEX_STR)) {
+                check = false;
+            } else {
+                System.out.println("Please input again, the first letter must be upper case");
+                customerType = scanner.nextLine();
+            }
+        } while (check);
+        return customerType;
+    }
+
+    public static String inputEmployeeLevel() {
+        String level = "";
+        int choice;
+        while (true) {
+            System.out.println("Select employee level: ");
+            System.out.println("1. Technical");
+            System.out.println("2. College");
+            System.out.println("3. University");
+            System.out.println("4. Master");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        level = "Technical";
+                        return level;
+                    case 2:
+                        level = "College";
+                        return level;
+                    case 3:
+                        level = "University";
+                        return level;
+                    case 4:
+                        level = "Master";
+                        return level;
+                    default:
+                        System.out.println("Your choice does not match our options");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number which matches our options");
+            }
+        }
+    }
+
+    public static String inputEmployeePosition() {
+        String position = "";
+        int choice;
+        while (true) {
+            System.out.println("Select employee position: ");
+            System.out.println("1. Receptionist");
+            System.out.println("2. Waiter");
+            System.out.println("3. Expert");
+            System.out.println("4. Observer");
+            System.out.println("5. Manager");
+            System.out.println("6. Director");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        position = "Receptionist";
+                        return position;
+                    case 2:
+                        position = "Waiter";
+                        return position;
+                    case 3:
+                        position = "Expert";
+                        return position;
+                    case 4:
+                        position = "Observer";
+                        return position;
+                    case 5:
+                        position = "Manager";
+                        return position;
+                    case 6:
+                        position = "Director";
+                        return position;
+                    default:
+                        System.out.println("Your choice does not match our options");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number which matches our options");
+            }
+        }
+    }
+
+    public static int inputEmployeeSalary() {
+        int salary;
+        try {
+            salary = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Please input a number");
+            salary = Integer.parseInt(scanner.nextLine());
+        }
+        return salary;
     }
 }

@@ -1,4 +1,5 @@
 package _00_case_study.controller;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FuramaController {
@@ -7,8 +8,8 @@ public class FuramaController {
     }
     public static void displayMainMenu() {
         Scanner scanner = new Scanner(System.in);
-        int choice = -1;
-        while (choice != 6) {
+        int choice;
+        while (true) {
             System.out.println("Menu");
             System.out.println("1.\tEmployee Management\n" +
                     "2.\tCustomer Management\n" +
@@ -16,25 +17,35 @@ public class FuramaController {
                     "4.\tBooking Management\n" +
                     "5.\tPromotion Management\n" +
                     "6.\tExit\n");
-            System.out.println("Input your choice: ");
-            choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    EmployeeManagement.employeeManagement();
-                    break;
-                case 2:
-                    CustomerManagement.customerManagement();
-                    break;
-                case 3:
-                    FacilityManagement.facilityManagement();
-                    break;
-                case 4:
-                    BookingManagement.bookingManagement();
-                    break;
-                case 5:
-                    PromotionManagement.promotionManagement();
-                    break;
+            try {
+                System.out.println("Input your choice: ");
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        EmployeeManagement.employeeManagement();
+                        break;
+                    case 2:
+                        CustomerManagement.customerManagement();
+                        break;
+                    case 3:
+                        FacilityManagement.facilityManagement();
+                        break;
+                    case 4:
+                        BookingManagement.bookingManagement();
+                        break;
+                    case 5:
+                        PromotionManagement.promotionManagement();
+                        break;
+                    case 6:
+                        System.exit(0);
+                        break;
+                    default:
+                        System.err.println("Your choice does not match our options");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number which matches our options");
             }
+
         }
     }
 }

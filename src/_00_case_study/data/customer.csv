@@ -1,3 +1,5 @@
 ID,NAME,DATE OF BIRTH,ADDRESS,GENDER,ID CARD,EMAIL,TYPE
-1,Khanh,15/07/1995,Quang Binh,true,12321312,khanh@gmail.com,Mid
-2,Viet,15/07/1997,Hue,false,12321312,viet@gmail.com,Top
+1,Khanh,15/07/1995,Quang Binh,Male,123231,khanh@gmail.com,Mid
+2,Viet,15/06/1997,Hue,Male,122323,viet@gmail.com,Top
+3,An,15/06/1997,Quang Tri,Male,123132,an@gmail.com,Bot
+4,Nhung,05/10/1997,Quang Binh,Female,1232321,nhung@gmail.com,Vip

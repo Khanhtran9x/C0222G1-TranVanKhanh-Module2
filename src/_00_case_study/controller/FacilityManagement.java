@@ -6,11 +6,51 @@ import java.util.Scanner;
 
 public class FacilityManagement {
     static FacilityServiceImpl facilityService = new FacilityServiceImpl();
+    static Scanner scanner = new Scanner(System.in);
 
     public static void facilityManagement() {
-        Scanner scanner = new Scanner(System.in);
-        int choice = -1;
-        while (choice != 5) {
+        int choice;
+        while (true) {
+            System.out.println("Menu");
+            System.out.println("1\tDisplay list facility\n" +
+                    "2\tAdd new facility\n" +
+                    "3\tDisplay list facility maintenance\n" +
+                    "4\tReturn main menu\n" +
+                    "5.\tExit\n");
+            System.out.println("Input your choice: ");
+            try {
+                choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        break;
+                    case 2:
+                        addNew();
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        returnToMainMenu();
+                        break;
+                    case 5:
+                        System.exit(0);
+                        break;
+                    default:
+                        System.err.println("Your choice does not match our options");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number which matches our options");
+            }
+
+        }
+    }
+
+    public static void display() {
+
+    }
+
+    public static void addNew() {
+        int choice;
+        while (true) {
             System.out.println("Menu");
             System.out.println("1\tAdd new villa\n" +
                     "2\tAdd new house\n" +
@@ -18,21 +58,31 @@ public class FacilityManagement {
                     "4\tReturn main menu\n" +
                     "5.\tExit\n");
             System.out.println("Nhập vào lựa chọn: ");
-            choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    addNewVilla();
-                    break;
-                case 2:
-                    addNewHouse();
-                    break;
-                case 3:
-                    addNewRoom();
-                    break;
-                case 4:
-                    returnToMainMenu();
-                    break;
+            try {
+                choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        addNewVilla();
+                        break;
+                    case 2:
+                        addNewHouse();
+                        break;
+                    case 3:
+                        addNewRoom();
+                        break;
+                    case 4:
+                        facilityManagement();
+                        break;
+                    case 5:
+                        System.exit(0);
+                        break;
+                    default:
+                        System.err.println("Your choice does not match our options");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number which matches our options");
             }
+
         }
     }
 

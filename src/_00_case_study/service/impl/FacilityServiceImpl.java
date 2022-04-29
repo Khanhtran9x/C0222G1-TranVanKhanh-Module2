@@ -1,10 +1,8 @@
 package _00_case_study.service.impl;
 
-import _00_case_study.model.Facility;
-import _00_case_study.model.House;
-import _00_case_study.model.Room;
-import _00_case_study.model.Villa;
+import _00_case_study.model.*;
 import _00_case_study.service.FacilityService;
+import _00_case_study.utils.ReadAndWrite;
 import _00_case_study.utils.RegexData;
 
 import java.util.*;
@@ -21,6 +19,9 @@ public class FacilityServiceImpl implements FacilityService {
 
     private Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
     Scanner scanner = new Scanner(System.in);
+    static List<House> houseList = new LinkedList<>();
+    String housePath = "src\\_00_case_study\\data\\house.csv";
+
 
     @Override
     public void display() {
@@ -48,10 +49,13 @@ public class FacilityServiceImpl implements FacilityService {
             House house = new House(facilityId, serviceName, areaUse, rentalPrice,
                     maxRentalPeople, rentalStyle, houseStandard, floor);
             facilityIntegerMap.put(house, 0);
-            System.out.println("Add House successfully");
+            houseList.add(house);
+            ReadAndWrite.writeHouseCsv(houseList, housePath);
+            System.out.println("Add house successfully");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Override

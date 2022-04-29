@@ -9,7 +9,7 @@ public class CustomerManagement {
     public static void customerManagement() {
         Scanner scanner = new Scanner(System.in);
         int choice = -1;
-        while (choice != 5) {
+        while (true) {
             System.out.println("Menu");
             System.out.println("1.\tDisplay list customers\n" +
                     "2.\tAdd new customer\n" +
@@ -17,37 +17,31 @@ public class CustomerManagement {
                     "4.\tReturn main menu\n" +
                     "5.\tExit\n");
             System.out.println("Nhập vào lựa chọn: ");
-            choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    displayListCustomers();
-                    break;
-                case 2:
-                    addNewCustomers();
-                    break;
-                case 3:
-                    editCustomers();
-                    break;
-                case 4:
-                    returnToMainMenu();
-                    break;
+            try {
+                choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        customerService.display();
+                        break;
+                    case 2:
+                        customerService.addNew();
+                        break;
+                    case 3:
+                        customerService.edit();
+                        break;
+                    case 4:
+                        FuramaController.displayMainMenu();
+                        break;
+                    case 5:
+                        System.exit(0);
+                        break;
+                    default:
+                        System.err.println("Your choice does not match our options");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number which matches our options");
             }
+
         }
-    }
-
-    private static void returnToMainMenu() {
-        FuramaController.displayMainMenu();
-    }
-
-    private static void editCustomers() {
-        customerService.edit();
-    }
-
-    private static void addNewCustomers() {
-        customerService.addNew();
-    }
-
-    private static void displayListCustomers() {
-        customerService.display();
     }
 }

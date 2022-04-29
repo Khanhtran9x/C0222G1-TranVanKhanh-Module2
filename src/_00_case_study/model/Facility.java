@@ -77,4 +77,6 @@ public abstract class Facility {
                 ", styleRental='" + rentalStyle + '\'' +
                 '}';
     }
+
+    public abstract String toStringToWrite();
 }
