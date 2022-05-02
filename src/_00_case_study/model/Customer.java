@@ -20,7 +20,7 @@ public class Customer extends Person implements Serializable {
     public String toString() {
         return "Customer (id=" + this.getId() +
                 ", name=" + this.getName() +
-                ", age="  + this.getDateOfBirth() +
+                ", dateOfBirth="  + this.getDateOfBirth() +
                 ", address=" + this.getAddress() +
                 ", gender=" + this.getGender() +
                 ", id card=" + this.getIdCard() +

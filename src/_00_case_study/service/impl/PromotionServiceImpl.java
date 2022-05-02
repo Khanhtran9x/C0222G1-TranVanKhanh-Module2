@@ -26,7 +26,7 @@ public class PromotionServiceImpl {
         for (Booking booking : bookingSet) {
             usingServiceYear = Integer.parseInt(booking.getStartDate().substring(6));
             if (usingServiceYear == year) {
-                customerStackByYear.add(booking.getCustomer(customerList));
+                customerStackByYear.add(booking.getCustomer());
             }
         }
         System.out.println("Customer list using service in " + year);

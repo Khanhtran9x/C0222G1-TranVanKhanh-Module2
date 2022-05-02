@@ -5,9 +5,15 @@ public class Villa extends Facility{
     private double poolArea;
     private int floor;
 
-    public Villa(String facilityId, String serviceName, double useArea,
-                 int rentalPrice, int maxRentalPeople, String rentalStyle,
-                 String villaStandard, double poolArea, int floor) {
+    public Villa(String facilityId,
+                 String serviceName,
+                 double useArea,
+                 int rentalPrice,
+                 int maxRentalPeople,
+                 String rentalStyle,
+                 String villaStandard,
+                 double poolArea,
+                 int floor) {
         super(facilityId, serviceName, useArea, rentalPrice, maxRentalPeople, rentalStyle);
         this.villaStandard = villaStandard;
         this.poolArea = poolArea;
@@ -22,7 +28,7 @@ public class Villa extends Facility{
                 ", rental price=" + super.getRentalPrice() +
                 ", max rental people=" + super.getMaxRentalPeople() +
                 ", rental style=" + super.getRentalStyle() +
-                "villa Standard='" + villaStandard + '\'' +
+                ", villa Standard=" + villaStandard +
                 ", pool Area=" + poolArea +
                 ", floor=" + floor +
                 '}';
@@ -30,8 +36,14 @@ public class Villa extends Facility{
 
     @Override
     public String toStringToWrite() {
-        return this.getFacilityId() + "," + this.getServiceName() + "," + this.getUseArea() + "," + this.getRentalStyle() +
-                "," + this.getMaxRentalPeople() + "," + this.getRentalStyle() +
-                "," + this.villaStandard + "," + this.poolArea + "," + this.floor;
+        return this.getFacilityId() + ","
+                + this.getServiceName() + ","
+                + this.getUseArea() + ","
+                + this.getRentalPrice() + ","
+                + this.getMaxRentalPeople() + ","
+                + this.getRentalStyle() + ","
+                + this.villaStandard + ","
+                + this.poolArea + ","
+                + this.floor;
     }
 }

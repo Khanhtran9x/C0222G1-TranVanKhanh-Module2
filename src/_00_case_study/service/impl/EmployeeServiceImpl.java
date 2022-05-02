@@ -1,9 +1,9 @@
 package _00_case_study.service.impl;
 
 import _00_case_study.model.Employee;
-import _00_case_study.service.EmployeeService;
+import _00_case_study.service.itf.EmployeeService;
 import _00_case_study.utils.ReadAndWrite;
-import _00_case_study.utils.RegexData;
+import _00_case_study.utils.PersonRegexAndException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void addNew() {
-        Employee employee = RegexData.inputNewEmployee();
+        employeeList = ReadAndWrite.readEmployeeCsv(path);
+        Employee employee = PersonRegexAndException.inputNewEmployee();
         employeeList.add(employee);
         ReadAndWrite.writeEmployeeCsv(employeeList, path);
     }
@@ -34,6 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeList = ReadAndWrite.readEmployeeCsv(path);
         int id;
         int count = 0;
+
         try {
             System.out.println("Input Employee ID to edit");
             id = Integer.parseInt(scanner.nextLine());
@@ -43,9 +45,10 @@ public class EmployeeServiceImpl implements EmployeeService {
             id = Integer.parseInt(scanner.nextLine());
         }
 
-        for (Employee employee : employeeList) {
-            if (employee.getId() == (id)) {
-                employee = RegexData.inputNewEmployee();
+        for (int i = 0; i < employeeList.size(); i++) {
+            if (employeeList.get(i).getId() == (id)) {
+                Employee employee = PersonRegexAndException.inputNewEmployee();
+                employeeList.set(i, employee);
                 count++;
                 break;
             }
@@ -58,18 +61,5 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void remove() {
-        int count = 0;
-        System.out.println("Input Employee ID to remove");
-        int id = Integer.parseInt(scanner.nextLine());
-        for (Employee employee : employeeList) {
-            if (employee.getId() == id) {
-                employeeList.remove(employee);
-                count++;
-                break;
-            }
-        }
-        if (count == 0) {
-            System.out.println("The ID you input does not exist");
-        }
     }
 }

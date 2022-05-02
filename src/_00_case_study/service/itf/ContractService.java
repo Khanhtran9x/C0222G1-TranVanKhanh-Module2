@@ -1,6 +1,6 @@
-package _00_case_study.service;
+package _00_case_study.service.itf;
 
-public interface BookingService extends Service{
+public interface ContractService extends Service{
     @Override
     void display();
 

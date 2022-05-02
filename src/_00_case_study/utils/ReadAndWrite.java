@@ -1,8 +1,6 @@
 package _00_case_study.utils;
 
-
 import _00_case_study.model.*;
-
 import java.io.*;
 import java.util.*;
 
@@ -79,7 +77,7 @@ public class ReadAndWrite {
             while ((line = br.readLine()) != null) {
                 String[] arr = line.split(",");
                 employee = new Employee(Integer.parseInt(arr[0]), arr[1], arr[2], arr[3],
-                        arr[4], arr[5], arr[6], Integer.parseInt(arr[7]),
+                        arr[4], arr[5], arr[6], arr[7],
                         arr[8], Integer.parseInt(arr[9]));
                 employeeList.add(employee);
             }
@@ -120,7 +118,7 @@ public class ReadAndWrite {
             while ((line = br.readLine()) != null) {
                 String[] arr = line.split(",");
                 house = new House(arr[0], arr[1], Double.parseDouble(arr[2]), Integer.parseInt(arr[3]),
-                        Integer.parseInt(arr[4]), arr[5], arr[6], Double.parseDouble(arr[7]));
+                        Integer.parseInt(arr[4]), arr[5], arr[6], Integer.parseInt(arr[7]));
                 houseList.add(house);
             }
             br.close();
@@ -128,6 +126,137 @@ public class ReadAndWrite {
             e.printStackTrace();
         }
         return houseList;
+    }
+
+    public static void writeVillaCsv(List<Villa> list, String path) {
+        try {
+            FileWriter fileWriter = new FileWriter(new File(path));
+            fileWriter.append("FACILITY ID,");
+            fileWriter.append("SERVICE NAME,");
+            fileWriter.append("USE AREA,");
+            fileWriter.append("RENTAL PRICE,");
+            fileWriter.append("MAX RENTAL PEOPLE,");
+            fileWriter.append("RENTAL STYLE,");
+            fileWriter.append("VILLA STANDARD,");
+            fileWriter.append("POOL AREA,");
+            fileWriter.append("FLOOR" + "\n");
+            for (Villa villa : list) {
+                fileWriter.append(villa.toStringToWrite() + "\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Villa> readVillaCsv(String path) {
+        List<Villa> villaList = new LinkedList<>();
+        Villa villa;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String line = "";
+            line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] arr = line.split(",");
+                villa = new Villa(arr[0], arr[1], Double.parseDouble(arr[2]), Integer.parseInt(arr[3]),
+                        Integer.parseInt(arr[4]), arr[5], arr[6], Double.parseDouble(arr[7]), Integer.parseInt(arr[8]));
+                villaList.add(villa);
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return villaList;
+    }
+
+    public static void writeRoomCsv(List<Room> list, String path) {
+        try {
+            FileWriter fileWriter = new FileWriter(new File(path));
+            fileWriter.append("FACILITY ID,");
+            fileWriter.append("SERVICE NAME,");
+            fileWriter.append("USE AREA,");
+            fileWriter.append("RENTAL PRICE,");
+            fileWriter.append("MAX RENTAL PEOPLE,");
+            fileWriter.append("RENTAL STYLE,");
+            fileWriter.append("BONUS SERVICE" + "\n");
+            for (Room room : list) {
+                fileWriter.append(room.toStringToWrite() + "\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Room> readRoomCsv(String path) {
+        List<Room> roomList = new LinkedList<>();
+        Room room;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String line = "";
+            line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] arr = line.split(",");
+                room = new Room(arr[0], arr[1], Double.parseDouble(arr[2]), Integer.parseInt(arr[3]),
+                        Integer.parseInt(arr[4]), arr[5], arr[6]);
+                roomList.add(room);
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return roomList;
+    }
+
+    public static void writeFacilityCsv(Map<Facility, Integer> facilityIntegerMap, String path) {
+        try {
+            FileWriter fileWriter = new FileWriter(new File(path));
+            fileWriter.write("FACILITY,");
+            fileWriter.append("RENT TIMES" + "\n");
+            for (Map.Entry<Facility, Integer> map : facilityIntegerMap.entrySet()) {
+                 fileWriter.append(map.getKey().getFacilityId() + "," + map.getValue() + "\n");
+            }
+            fileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Map<Facility, Integer> readFacilityCsv(String path) {
+        Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
+        Facility facility = null;
+        List<House> houseList = ReadAndWrite.readHouseCsv("src\\_00_case_study\\data\\house.csv");
+        List<Villa> villaList = ReadAndWrite.readVillaCsv("src\\_00_case_study\\data\\villa.csv");
+        List<Room> roomList = ReadAndWrite.readRoomCsv("src\\_00_case_study\\data\\room.csv");
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String line = "";
+            line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] arr = line.split(",");
+                for (House house : houseList) {
+                    if (arr[0].equals(house.getFacilityId())) {
+                        facility = house;
+                    }
+                }
+                for (Villa villa : villaList) {
+                    if (arr[0].equals(villa.getFacilityId())) {
+                        facility = villa;
+                    }
+                }
+                for (Room room : roomList) {
+                    if (arr[0].equals(room.getFacilityId())) {
+                        facility = room;
+                    }
+                }
+                facilityIntegerMap.put(facility, Integer.parseInt(arr[1]));
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return facilityIntegerMap;
     }
 
     public static void writeBookingCsv(Set<Booking> set, String path) {
@@ -201,6 +330,7 @@ public class ReadAndWrite {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return  contractList;
+        return contractList;
     }
+
 }

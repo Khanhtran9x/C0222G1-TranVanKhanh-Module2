@@ -1,5 +1,7 @@
 package _00_case_study.model;
 
+import _00_case_study.utils.ReadAndWrite;
+
 import java.util.List;
 
 public class Booking {
@@ -51,8 +53,9 @@ public class Booking {
         this.customerId = customerId;
     }
 
-    public Customer getCustomer(List<Customer> customers){
-        for (Customer customer: customers) {
+    public Customer getCustomer(){
+        List<Customer> customerList = ReadAndWrite.readCustomerCsv("src\\_00_case_study\\data\\customer.csv");
+        for (Customer customer: customerList) {
             if (customer.getId() == customerId){
                 return customer;
             }

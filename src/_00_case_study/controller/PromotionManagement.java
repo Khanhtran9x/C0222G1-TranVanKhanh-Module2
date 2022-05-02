@@ -21,13 +21,13 @@ public class PromotionManagement {
                 choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        displayListCustomersUseService();
+                        promotionService.displayCustomerUseService();
                         break;
                     case 2:
-                        displayListCustomersUseVoucher();
+                        promotionService.displayCustomerListReceivingVoucher();
                         break;
                     case 3:
-                        returnToMainMenu();
+                        FuramaController.displayMainMenu();
                         break;
                     case 4:
                         System.exit(0);
@@ -42,16 +42,4 @@ public class PromotionManagement {
 
         }
     }
-
-    private static void returnToMainMenu() {
-    }
-
-    private static void displayListCustomersUseVoucher() {
-        promotionService.displayCustomerListReceivingVoucher();
-    }
-
-    private static void displayListCustomersUseService() {
-        promotionService.displayCustomerUseService();
-    }
-
 }

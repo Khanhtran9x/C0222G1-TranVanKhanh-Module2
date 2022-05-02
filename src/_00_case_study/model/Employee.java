@@ -27,7 +27,7 @@ public class Employee extends Person implements Serializable {
     public String toString() {
         return "Employee (id=" + this.getId() +
                 ", name=" + this.getName() +
-                ", age="  + this.getDateOfBirth() +
+                ", dateOfBirth="  + this.getDateOfBirth() +
                 ", address=" + this.getAddress() +
                 ", gender=" + this.getGender() +
                 ", id card=" + this.getIdCard() +

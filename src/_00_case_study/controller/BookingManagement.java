@@ -21,27 +21,27 @@ public class BookingManagement {
                     "5.\tEdit contracts\n" +
                     "6.\tReturn main menu\n" +
                     "7.\tExit\n");
-            System.out.println("Nhập vào lựa chọn: ");
+            System.out.println("Input your choice: ");
             try {
                 choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        addNewBooking();
+                        bookingService.addNew();
                         break;
                     case 2:
-                        displayListBooking();
+                        bookingService.display();
                         break;
                     case 3:
-                        createNewContracts();
+                        contractService.addNew();
                         break;
                     case 4:
-                        displayListContracts();
+                        contractService.display();
                         break;
                     case 5:
-                        editContracts();
+                        contractService.edit();
                         break;
                     case 6:
-                        returnToMainMenu();
+                        FuramaController.displayMainMenu();
                         break;
                     case 7:
                         System.exit(0);
@@ -53,28 +53,5 @@ public class BookingManagement {
             }
 
         }
-    }
-
-    private static void returnToMainMenu() {
-        FuramaController.displayMainMenu();
-    }
-
-    private static void editContracts() {
-    }
-
-    private static void displayListContracts() {
-        contractService.display();
-    }
-
-    private static void createNewContracts() {
-        contractService.addNew();
-    }
-
-    private static void displayListBooking() {
-        bookingService.display();
-    }
-
-    private static void addNewBooking() {
-        bookingService.addNew();
     }
 }

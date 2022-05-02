@@ -2,7 +2,7 @@ package _00_case_study.model;
 
 public class House extends Facility{
     private String houseStandard;
-    private double floor;
+    private int floor;
 
     public House(String facilityId,
                  String serviceName,
@@ -11,7 +11,7 @@ public class House extends Facility{
                  int maxRentalPeople,
                  String rentalStyle,
                  String houseStandard,
-                 double floor) {
+                 int floor) {
         super(facilityId, serviceName, useArea, rentalPrice, maxRentalPeople, rentalStyle);
         this.houseStandard = houseStandard;
         this.floor = floor;

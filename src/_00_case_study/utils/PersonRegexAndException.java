@@ -9,12 +9,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class RegexData {
+public class PersonRegexAndException {
     static Scanner scanner = new Scanner(System.in);
     static final String REGEX_BIRTH_DAY = "(([0-2][0-9])|([3][0-1]))[\\/](([0][1-9])|([1][0,2]))[\\/]\\d{4}";
-    static final String REGEX_STR = "[A-Z][a-z]+";
+    static final String REGEX_STR = "^[a-zA-Z\\s]*$";
     static final String REGEX_ID_CARD = "\\d+";
-    static final String REGEX_EMAIL = "^[A-Z|a-z|0-9|\\_|\\.]{6}[@][A-Z|a-z|0-9]{5,15}[\\.][A-Z|a-z]{2,5}";
+    static final String REGEX_EMAIL = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
 
     public static Customer inputNewCustomer() {
         int id = inputId();
@@ -22,7 +22,7 @@ public class RegexData {
         String dateOfBirth = inputDateOfBirth();
         String address = inputAddress();
         String gender = inputGender();
-        String idCard = inputCustomerIdCard();
+        String idCard = inputIdCard();
         String email = inputEmail();
         String type = inputCustomerType();
 
@@ -35,7 +35,7 @@ public class RegexData {
         String dateOfBirth = inputDateOfBirth();
         String address = inputAddress();
         String gender = inputGender();
-        String idCard = inputCustomerIdCard();
+        String idCard = inputIdCard();
         String email = inputEmail();
         String level = inputEmployeeLevel();
         String position = inputEmployeePosition();
@@ -58,7 +58,7 @@ public class RegexData {
     }
 
     public static String inputDateOfBirth() {
-        System.out.println("Input Customer Age:");
+        System.out.println("Input date of birth:");
         String dateOfBirth = scanner.nextLine();
         boolean check = true;
         while (check) {
@@ -86,7 +86,7 @@ public class RegexData {
     }
 
     public static int inputId() {
-        System.out.println("Input Customer ID:");
+        System.out.println("Input ID:");
         int id;
         while (true) {
             try {
@@ -100,7 +100,7 @@ public class RegexData {
     }
 
     public static String inputName() {
-        System.out.println("Input Customer Name:");
+        System.out.println("Input name:");
         String name = scanner.nextLine();
         boolean check = true;
         do {
@@ -115,13 +115,13 @@ public class RegexData {
     }
 
     public static String inputAddress() {
-        System.out.println("Input Customer Address:");
+        System.out.println("Input Address:");
         String address = scanner.nextLine();
         return address;
     }
 
     public static String inputGender() {
-        System.out.println("Choose Customer Gender: 1. Male  2. Female");
+        System.out.println("Choose Gender: 1. Male  2. Female");
         String gender;
         int choice;
         while (true) {
@@ -142,8 +142,8 @@ public class RegexData {
         }
     }
 
-    public static String inputCustomerIdCard() {
-        System.out.println("Input Customer ID Card:");
+    public static String inputIdCard() {
+        System.out.println("Input ID Card:");
         String idCard = scanner.nextLine();
         boolean check = true;
         do {
@@ -158,7 +158,7 @@ public class RegexData {
     }
 
     public static String inputEmail() {
-        System.out.println("Input Customer email:");
+        System.out.println("Input email:");
         String email = scanner.nextLine();
         boolean check = true;
         do {
@@ -173,18 +173,40 @@ public class RegexData {
     }
 
     public static String inputCustomerType() {
-        System.out.println("Input Customer type:");
-        String customerType = scanner.nextLine();
-        boolean check = true;
-        do {
-            if (customerType.matches(REGEX_STR)) {
-                check = false;
-            } else {
-                System.out.println("Please input again, the first letter must be upper case");
-                customerType = scanner.nextLine();
+        String type = "";
+        int choice;
+        while (true) {
+            System.out.println("Select customer type: ");
+            System.out.println("1. Diamond");
+            System.out.println("2. Platinum");
+            System.out.println("3. Gold");
+            System.out.println("4. Silver");
+            System.out.println("5. Member");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                switch (choice) {
+                    case 1:
+                        type = "Diamond";
+                        return type;
+                    case 2:
+                        type = "Platinum";
+                        return type;
+                    case 3:
+                        type = "Gold";
+                        return type;
+                    case 4:
+                        type = "Silver";
+                        return type;
+                    case 5:
+                        type = "Member";
+                        return type;
+                    default:
+                        System.out.println("Your choice does not match our options");
+                }
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number which matches our options");
             }
-        } while (check);
-        return customerType;
+        }
     }
 
     public static String inputEmployeeLevel() {
@@ -264,6 +286,7 @@ public class RegexData {
     public static int inputEmployeeSalary() {
         int salary;
         try {
+            System.out.println("Input employee salary");
             salary = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
             System.out.println("Please input a number");

@@ -1,5 +1,4 @@
 package _00_case_study.controller;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FuramaController {

@@ -8,7 +8,7 @@ public class CustomerManagement {
     public static CustomerServiceImpl customerService = new CustomerServiceImpl();
     public static void customerManagement() {
         Scanner scanner = new Scanner(System.in);
-        int choice = -1;
+        int choice;
         while (true) {
             System.out.println("Menu");
             System.out.println("1.\tDisplay list customers\n" +

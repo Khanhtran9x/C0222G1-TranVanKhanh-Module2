@@ -3,8 +3,13 @@ package _00_case_study.model;
 public class Room extends Facility{
    private String freeBonusService;
 
-    public Room(String facilityId, String serviceName, double useArea,
-                int rentalPrice, int maxRentalPeople, String rentalStyle, String freeBonusService) {
+    public Room(String facilityId,
+                String serviceName,
+                double useArea,
+                int rentalPrice,
+                int maxRentalPeople,
+                String rentalStyle,
+                String freeBonusService) {
         super(facilityId, serviceName, useArea, rentalPrice, maxRentalPeople, rentalStyle);
         this.freeBonusService = freeBonusService;
     }
@@ -23,6 +28,12 @@ public class Room extends Facility{
 
     @Override
     public String toStringToWrite() {
-        return null;
+        return this.getFacilityId() + ","
+                + this.getServiceName() + ","
+                + this.getUseArea() + ","
+                + this.getRentalPrice() + ","
+                + this.getMaxRentalPeople() + ","
+                + this.getRentalStyle() + ","
+                + this.freeBonusService;
     }
 }
