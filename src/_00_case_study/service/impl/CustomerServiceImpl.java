@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
             System.out.println("Input Customer ID to edit");
             id = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("Please input a number");
+            System.err.println("Please input a number");
             id = Integer.parseInt(scanner.nextLine());
         }
 
@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
             System.out.println("Input Customer ID to remove");
             id = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
-            System.out.println("Please input a number");
+            System.err.println("Please input a number");
             id = Integer.parseInt(scanner.nextLine());
         }
 

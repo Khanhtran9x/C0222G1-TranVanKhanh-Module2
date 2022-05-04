@@ -41,20 +41,21 @@ public class BookingServiceImpl implements BookingService {
         }
 
         System.out.println("Input customer Id");
-        boolean check = true;
-        int id = Integer.parseInt(scanner.nextLine());
-        while (check) {
-            for (Customer customer : customerList) {
-                if (id == customer.getId()) {
-                    check = false;
-                    return customer;
+        int id ;
+
+        while (true) {
+            try {
+                id = Integer.parseInt(scanner.nextLine());
+                for (Customer customer : customerList) {
+                    if (id == customer.getId()) {
+                        return customer;
+                    }
                 }
-            }
-            if (check) {
-                System.out.println("Not found, please input customer Id again");
+                System.err.println("Not found, please input customer Id again");
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number");
             }
         }
-        return null;
     }
 
     public static Facility chooseFacility() {
@@ -64,8 +65,10 @@ public class BookingServiceImpl implements BookingService {
         }
 
         System.out.println("Input facility Id");
-        String id = scanner.nextLine();
+        String id;
+
         while (true) {
+            id = scanner.nextLine();
             for (Map.Entry<Facility, Integer> map : facilityIntegerMap.entrySet()) {
                 if (id.equals(map.getKey().getFacilityId())) {
                     facilityIntegerMap.put(map.getKey(), map.getValue() + 1);
@@ -73,7 +76,7 @@ public class BookingServiceImpl implements BookingService {
                     return map.getKey();
                 }
             }
-            System.out.println("Not found, please input facility id again");
+            System.err.println("Not found, please input facility id again");
         }
     }
 

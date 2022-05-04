@@ -1,7 +1,6 @@
 package _00_case_study.utils;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -12,10 +11,11 @@ public class BookingRegexAndException {
 
     public static String inputStartDate() {
         System.out.println("Input start date:");
-        String startDate = scanner.nextLine();
+        String startDate;
 
         while (true) {
             try {
+                startDate = scanner.nextLine();
                 if (Pattern.matches(REGEX_DATE, startDate)) {
                     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate start = LocalDate.parse(startDate, dateTimeFormatter);
@@ -25,38 +25,76 @@ public class BookingRegexAndException {
                         return startDate;
                     } else {
                         System.err.println("The start date must be after now, please input again");
-                        startDate = scanner.nextLine();
                     }
                 }
             } catch (Exception e) {
                 System.err.println("Please input the right format of date dd/MM/yyyy");
-                startDate = scanner.nextLine();
             }
         }
     }
 
     public static String inputEndDate(String startDate) {
         System.out.println("Input end date:");
-        String endDate = scanner.nextLine();
+        String endDate;
 
         while (true) {
             try {
+                endDate = scanner.nextLine();
                 if (Pattern.matches(REGEX_DATE, endDate)) {
                     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     LocalDate start = LocalDate.parse(startDate, dateTimeFormatter);
                     LocalDate end = LocalDate.parse(endDate, dateTimeFormatter);
-                    LocalDate now = LocalDate.now();
 
                     if (end.isAfter(start)){
                         return endDate;
                     } else {
                         System.err.println("The end date must be after start date, please input again");
-                        endDate = scanner.nextLine();
                     }
                 }
             } catch (Exception e) {
                 System.err.println("Please input the right format of date dd/MM/yyyy");
-                endDate = scanner.nextLine();
+            }
+        }
+    }
+
+    public static int inputContractId(){
+        System.out.println("Input contract Id:");
+        int contractId;
+
+        while (true){
+            try {
+                contractId = Integer.parseInt(scanner.nextLine());
+                return contractId;
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number");
+            }
+        }
+    }
+
+    public static int inputDeposit(){
+        System.out.println("Input deposit money:");
+        int deposit;
+
+        while (true){
+            try {
+                deposit = Integer.parseInt(scanner.nextLine());
+                return deposit;
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number");
+            }
+        }
+    }
+
+    public static int inputTotalPay(){
+        System.out.println("Input deposit money:");
+        int totalPay;
+
+        while (true){
+            try {
+                totalPay = Integer.parseInt(scanner.nextLine());
+                return totalPay;
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number");
             }
         }
     }
