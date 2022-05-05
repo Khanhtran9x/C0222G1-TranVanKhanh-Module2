@@ -4,22 +4,26 @@ import _00_case_study.model.House;
 import _00_case_study.model.Room;
 import _00_case_study.model.Villa;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class FacilityRegexAndException {
     static Scanner scanner = new Scanner(System.in);
+    static String facilityPath = "src\\_00_case_study\\data\\facility.csv";
     public static final String REGEX_BONUS_SERVICE = "^[a-zA-Z\\s]*$";
     public static final String REGEX_ID_VILLA = "(SVVL)[-][\\d]{4}";
     public static final String REGEX_ID_HOUSE = "(SVHO)[-][\\d]{4}";
     public static final String REGEX_ID_ROOM = "(SVRO)[-][\\d]{4}";
-    public static final String REGEX_RENTAL_PEOPLE = "^[1-9]|([1][1-9])|(20)$";
-    public static final String REGEX_PRICE = "^[1-9][0-9]$";
+    public static final String REGEX_RENTAL_PEOPLE = "[1-9]|[1][1-9]|[(20)]";
+    public static final String REGEX_PRICE = "^([1-9][0-9])|([1-9][\\d]{2})$";
     public static final String REGEX_AREA = "^([3-9][0-9])|([1-9][0-9]{2,})$";
     public static final String REGEX_POOL_AREA = "^[1-2][0-9]$";
     public static final String REGEX_NAME = "^[a-zA-Z\\s]*$";
 
-    public static Villa inputNewVilla(){
-        String villaId = inputVillaId();
+    public static Villa inputNewVilla() {
+        List<String[]> list = ReadAndWrite.readListCsv(facilityPath);
+
+        String villaId = inputVillaId(list);
         String serviceName = inputServiceName();
         double useArea = inputUseArea();
         int rentalPrice = inputRentalPrice();
@@ -30,12 +34,14 @@ public class FacilityRegexAndException {
         int floor = inputFloor();
 
         Villa villa = new Villa(villaId, serviceName, useArea, rentalPrice,
-                maxRentalPeople, rentalStyle, villaStandard, poolArea,floor);
+                maxRentalPeople, rentalStyle, villaStandard, poolArea, floor);
         return villa;
     }
 
-    public static House inputNewHouse(){
-        String houseId = inputHouseId();
+    public static House inputNewHouse() {
+        List<String[]> list = ReadAndWrite.readListCsv(facilityPath);
+
+        String houseId = inputHouseId(list);
         String serviceName = inputServiceName();
         double useArea = inputUseArea();
         int rentalPrice = inputRentalPrice();
@@ -49,8 +55,10 @@ public class FacilityRegexAndException {
         return house;
     }
 
-    public static Room inputNewRoom(){
-        String roomId = inputRoomId();
+    public static Room inputNewRoom() {
+        List<String[]> list = ReadAndWrite.readListCsv(facilityPath);
+
+        String roomId = inputRoomId(list);
         String serviceName = inputServiceName();
         double useArea = inputUseArea();
         int rentalPrice = inputRentalPrice();
@@ -63,26 +71,36 @@ public class FacilityRegexAndException {
         return room;
     }
 
-    public static String inputVillaId() {
-        System.out.println("Input villa id:");
-        String villaId = scanner.nextLine();
+    public static String inputVillaId(List<String[]> list) {
+        String villaId;
         boolean check = true;
         do {
+            System.out.println("Input villa id:");
+            villaId = scanner.nextLine();
+            if (!CheckId.checkId(villaId, list)) {
+                System.err.println("The id that you just inputted was taken, please input a new one");
+                continue;
+            }
             if (villaId.matches(REGEX_ID_VILLA)) {
                 check = false;
             } else {
                 System.out.println("You inputted the wrong format, the right one must be SVVL-XXXX");
-                villaId = scanner.nextLine();
             }
         } while (check);
         return villaId;
     }
 
-    public static String inputHouseId() {
-        System.out.println("Input house id:");
-        String houseId = scanner.nextLine();
+    public static String inputHouseId(List<String[]> list) {
+        String houseId;
         boolean check = true;
+
         do {
+            System.out.println("Input house id:");
+            houseId = scanner.nextLine();
+            if (!CheckId.checkId(houseId, list)) {
+                System.err.println("The id that you just inputted was taken, please input a new one");
+                continue;
+            }
             if (houseId.matches(REGEX_ID_HOUSE)) {
                 check = false;
             } else {
@@ -93,11 +111,17 @@ public class FacilityRegexAndException {
         return houseId;
     }
 
-    public static String inputRoomId() {
-        System.out.println("Input room id:");
-        String roomId = scanner.nextLine();
+    public static String inputRoomId(List<String[]> list) {
+        String roomId;
         boolean check = true;
         do {
+            System.out.println("Input room id:");
+            roomId = scanner.nextLine();
+            if (!CheckId.checkId(roomId, list)) {
+                System.err.println("The id that you just inputted was taken, please input a new one");
+                continue;
+            }
+
             if (roomId.matches(REGEX_ID_ROOM)) {
                 check = false;
             } else {
@@ -283,7 +307,8 @@ public class FacilityRegexAndException {
                 if (floor > 0 && floor < 5) {
                     return floor;
                 } else {
-                    System.err.println("Please input a number less than 5");;
+                    System.err.println("Please input a number less than 5");
+                    ;
                 }
             } catch (NumberFormatException e) {
                 System.err.println("Please input a number less than 5");
@@ -292,7 +317,7 @@ public class FacilityRegexAndException {
 
     }
 
-    public static String inputFreeBonusService(){
+    public static String inputFreeBonusService() {
         System.out.println("Input free bonus service:");
         String freeBonusService = scanner.nextLine();
         boolean check = true;

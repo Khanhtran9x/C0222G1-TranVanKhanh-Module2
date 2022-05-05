@@ -6,18 +6,22 @@ import _00_case_study.model.Employee;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class PersonRegexAndException {
     static Scanner scanner = new Scanner(System.in);
+    static String customerPath = "src\\_00_case_study\\data\\customer.csv";
+    static String employeePath = "src\\_00_case_study\\data\\employee.csv";
     static final String REGEX_BIRTH_DAY = "(([0-2][0-9])|([3][0-1]))[\\/](([0][1-9])|([1][0,2]))[\\/]\\d{4}";
     static final String REGEX_STR = "^[a-zA-Z\\s]*$";
     static final String REGEX_ID_CARD = "\\d+";
     static final String REGEX_EMAIL = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
 
     public static Customer inputNewCustomer() {
-        int id = inputId();
+        List<String[]> list = ReadAndWrite.readListCsv(customerPath);
+        int id = inputId(list);
         String name = inputName();
         String dateOfBirth = inputDateOfBirth();
         String address = inputAddress();
@@ -30,7 +34,8 @@ public class PersonRegexAndException {
     }
 
     public static Employee inputNewEmployee() {
-        int id = inputId();
+        List<String[]> list = ReadAndWrite.readListCsv(employeePath);
+        int id = inputId(list);
         String name = inputName();
         String dateOfBirth = inputDateOfBirth();
         String address = inputAddress();
@@ -44,18 +49,6 @@ public class PersonRegexAndException {
         return new Employee(id, name, dateOfBirth, address, gender, idCard, email, level, position, salary);
     }
 
-    public static String regexStr(String temp, String regex, String error) {
-        boolean check = true;
-        do {
-            if (temp.matches(regex)) {
-                check = false;
-            } else {
-                System.out.println(error);
-                temp = scanner.nextLine();
-            }
-        } while (check);
-        return temp;
-    }
 
     public static String inputDateOfBirth() {
         System.out.println("Input date of birth:");
@@ -85,18 +78,22 @@ public class PersonRegexAndException {
         return dateOfBirth;
     }
 
-    public static int inputId() {
+    public static int inputId(List<String[]> list) {
         System.out.println("Input ID:");
         int id;
+
         while (true) {
             try {
                 id = Integer.parseInt(scanner.nextLine());
-                break;
+                if (!CheckId.checkId(id, list)){
+                    System.err.println("The id that you just inputted was taken, please input a new one");
+                    continue;
+                }
+                return id;
             } catch (NumberFormatException e) {
                 System.err.println("Please input a number");
             }
         }
-        return id;
     }
 
     public static String inputName() {
