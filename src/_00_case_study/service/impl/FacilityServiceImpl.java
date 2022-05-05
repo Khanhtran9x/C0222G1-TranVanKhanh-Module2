@@ -54,7 +54,7 @@ public class FacilityServiceImpl implements FacilityService {
     public void addNewHouse() {
         facilityIntegerMap = readFile();
 
-        House house = FacilityRegexAndException.inputNewHouse();
+        House house = inputNewHouse();
         facilityIntegerMap.put(house, 0);
 
         ReadAndWrite.writeMapCsv(facilityIntegerMap, path);
@@ -65,7 +65,7 @@ public class FacilityServiceImpl implements FacilityService {
     public void addNewVilla() {
         facilityIntegerMap = readFile();
 
-        Villa villa = FacilityRegexAndException.inputNewVilla();
+        Villa villa = inputNewVilla();
         facilityIntegerMap.put(villa, 0);
 
         ReadAndWrite.writeMapCsv(facilityIntegerMap, path);
@@ -76,7 +76,7 @@ public class FacilityServiceImpl implements FacilityService {
     public void addNewRoom() {
         facilityIntegerMap = readFile();
 
-        Room room = FacilityRegexAndException.inputNewRoom();
+        Room room = inputNewRoom();
         facilityIntegerMap.put(room, 0);
 
         ReadAndWrite.writeMapCsv(facilityIntegerMap, path);
@@ -104,5 +104,56 @@ public class FacilityServiceImpl implements FacilityService {
             }
         }
         return facilityMap;
+    }
+
+    public  Villa inputNewVilla() {
+        List<String[]> list = ReadAndWrite.readListCsv(path);
+
+        String villaId = FacilityRegexAndException.inputVillaId(list);
+        String serviceName = FacilityRegexAndException.inputServiceName();
+        double useArea = FacilityRegexAndException.inputUseArea();
+        int rentalPrice = FacilityRegexAndException.inputRentalPrice();
+        int maxRentalPeople = FacilityRegexAndException.inputMaxRentalPeople();
+        String rentalStyle = FacilityRegexAndException.inputRentalStyle();
+        String villaStandard = FacilityRegexAndException.inputVillaStandard();
+        double poolArea = FacilityRegexAndException.inputPoolArea();
+        int floor = FacilityRegexAndException.inputFloor();
+
+        Villa villa = new Villa(villaId, serviceName, useArea, rentalPrice,
+                maxRentalPeople, rentalStyle, villaStandard, poolArea, floor);
+        return villa;
+    }
+
+    public House inputNewHouse() {
+        List<String[]> list = ReadAndWrite.readListCsv(path);
+
+        String houseId = FacilityRegexAndException.inputHouseId(list);
+        String serviceName = FacilityRegexAndException.inputServiceName();
+        double useArea = FacilityRegexAndException.inputUseArea();
+        int rentalPrice = FacilityRegexAndException.inputRentalPrice();
+        int maxRentalPeople = FacilityRegexAndException.inputMaxRentalPeople();
+        String rentalStyle = FacilityRegexAndException.inputRentalStyle();
+        String houseStandard = FacilityRegexAndException.inputHouseStandard();
+        int floor = FacilityRegexAndException.inputFloor();
+
+        House house = new House(houseId, serviceName, useArea, rentalPrice,
+                maxRentalPeople, rentalStyle, houseStandard, floor);
+        return house;
+    }
+
+    public Room inputNewRoom() {
+        List<String[]> list = ReadAndWrite.readListCsv(path);
+
+        String roomId = FacilityRegexAndException.inputRoomId(list);
+        String serviceName = FacilityRegexAndException.inputServiceName();
+        double useArea = FacilityRegexAndException.inputUseArea();
+        int rentalPrice = FacilityRegexAndException.inputRentalPrice();
+        int maxRentalPeople = FacilityRegexAndException.inputMaxRentalPeople();
+        String rentalStyle = FacilityRegexAndException.inputRentalStyle();
+        String freeBonusService = FacilityRegexAndException.inputFreeBonusService();
+
+        Room room = new Room(roomId, serviceName, useArea, rentalPrice,
+                maxRentalPeople, rentalStyle, freeBonusService);
+        return room;
     }
 }

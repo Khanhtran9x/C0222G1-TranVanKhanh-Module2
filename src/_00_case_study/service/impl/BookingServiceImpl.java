@@ -18,6 +18,7 @@ public class BookingServiceImpl implements BookingService {
     static String facilityPath = "src\\_00_case_study\\data\\facility.csv";
     static Booking booking;
     static Customer customer;
+    static Facility facility;
     static Villa villa;
     static House house;
     static Room room;
@@ -82,6 +83,26 @@ public class BookingServiceImpl implements BookingService {
         }
     }
 
+    @Override
+    public void addNew() {
+        bookingSet = readSetFile(bookingPath);
+        booking = inputNewBooking();
+        bookingSet.add(booking);
+        ReadAndWrite.writeSetCsv(bookingSet, bookingPath);
+    }
+
+    public Booking inputNewBooking(){
+        stringList = ReadAndWrite.readListCsv(bookingPath);
+        int id = BookingRegexAndException.inputId(stringList);
+        customer = chooseCustomer();
+        facility = chooseFacility();
+        String startDate = BookingRegexAndException.inputStartDate();
+        String endDate = BookingRegexAndException.inputEndDate(startDate);
+
+        return new Booking(id, startDate, endDate, customer.getId(),
+                facility.getFacilityId(), facility.getServiceName());
+    }
+
     public Customer chooseCustomer() {
         System.out.println("Customer list: ");
         customerList = readListFile(customerPath);
@@ -130,25 +151,6 @@ public class BookingServiceImpl implements BookingService {
             }
             System.err.println("Not found, please input facility id again");
         }
-    }
-
-    @Override
-    public void addNew() {
-        bookingSet = readSetFile(bookingPath);
-        int id = 1;
-        if (!bookingSet.isEmpty()) {
-            id = bookingSet.size() + 1;
-        }
-
-        Customer customer = chooseCustomer();
-        Facility facility = chooseFacility();
-        String startDate = BookingRegexAndException.inputStartDate();
-        String endDate = BookingRegexAndException.inputEndDate(startDate);
-
-        Booking booking = new Booking(id, startDate, endDate, customer.getId(),
-                facility.getFacilityId(), facility.getServiceName());
-        bookingSet.add(booking);
-        ReadAndWrite.writeSetCsv(bookingSet, bookingPath);
     }
 
     @Override

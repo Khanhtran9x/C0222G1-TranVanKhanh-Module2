@@ -2,12 +2,31 @@ package _00_case_study.utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class BookingRegexAndException {
     static Scanner scanner = new Scanner(System.in);
     static final String REGEX_DATE = "(([0-2][0-9])|([3][0-1]))[\\/](([0][1-9])|([1][0,2]))[\\/]\\d{4}";
+
+    public static int inputId(List<String[]> list) {
+        System.out.println("Input ID:");
+        int id;
+
+        while (true) {
+            try {
+                id = Integer.parseInt(scanner.nextLine());
+                if (!CheckId.checkId(id, list)){
+                    System.err.println("The id that you just inputted was taken, please input a new one");
+                    continue;
+                }
+                return id;
+            } catch (NumberFormatException e) {
+                System.err.println("Please input a number");
+            }
+        }
+    }
 
     public static String inputStartDate() {
         System.out.println("Input start date:");
@@ -26,9 +45,11 @@ public class BookingRegexAndException {
                     } else {
                         System.err.println("The start date must be after now, please input again");
                     }
+                } else {
+                    throw new Exception("Please input the right format of date dd/MM/yyyy");
                 }
             } catch (Exception e) {
-                System.err.println("Please input the right format of date dd/MM/yyyy");
+                System.err.println(e.getMessage());
             }
         }
     }
@@ -50,23 +71,11 @@ public class BookingRegexAndException {
                     } else {
                         System.err.println("The end date must be after start date, please input again");
                     }
+                } else {
+                    throw new Exception("Please input the right format of date dd/MM/yyyy");
                 }
             } catch (Exception e) {
-                System.err.println("Please input the right format of date dd/MM/yyyy");
-            }
-        }
-    }
-
-    public static int inputContractId(){
-        System.out.println("Input contract Id:");
-        int contractId;
-
-        while (true){
-            try {
-                contractId = Integer.parseInt(scanner.nextLine());
-                return contractId;
-            } catch (NumberFormatException e) {
-                System.err.println("Please input a number");
+                System.err.println(e.getMessage());
             }
         }
     }

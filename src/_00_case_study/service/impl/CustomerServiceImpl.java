@@ -25,6 +25,20 @@ public class CustomerServiceImpl implements CustomerService {
         return list;
     }
 
+    public Customer inputNewCustomer() {
+        List<String[]> list = ReadAndWrite.readListCsv(path);
+        int id = PersonRegexAndException.inputId(list);
+        String name = PersonRegexAndException.inputName();
+        String dateOfBirth = PersonRegexAndException.inputDateOfBirth();
+        String address = PersonRegexAndException.inputAddress();
+        String gender = PersonRegexAndException.inputGender();
+        String idCard = PersonRegexAndException.inputIdCard();
+        String email = PersonRegexAndException.inputEmail();
+        String type = PersonRegexAndException.inputCustomerType();
+
+        return new Customer(id, name, dateOfBirth, address, gender, idCard, email, type);
+    }
+
     @Override
     public void display() {
         customerList = readFile(path);
@@ -40,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void addNew() {
         customerList = readFile(path);
-        Customer customer = PersonRegexAndException.inputNewCustomer();
+        Customer customer = inputNewCustomer();
         customerList.add(customer);
         ReadAndWrite.writeListCsv(customerList, path);
         System.out.println("Added employee successfully");
@@ -51,6 +65,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerList = readFile(path);
         int id;
         int count = 0;
+        Customer customer;
 
         try {
             System.out.println("Input Customer ID to edit");
@@ -62,8 +77,10 @@ public class CustomerServiceImpl implements CustomerService {
 
         for (int i = 0; i < customerList.size(); i++) {
             if (customerList.get(i).getId() == id) {
-                Customer customer = PersonRegexAndException.inputNewCustomer();
-                customerList.set(i, customer);
+                customerList.remove(i);
+                ReadAndWrite.writeListCsv(customerList, path);
+                customer = inputNewCustomer();
+                customerList.add(i, customer);
                 count++;
                 break;
             }

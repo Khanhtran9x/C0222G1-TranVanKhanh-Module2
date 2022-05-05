@@ -23,6 +23,9 @@ public class PromotionServiceImpl {
         int usingServiceYear;
 
         for (Booking booking : bookingSet) {
+            if (booking.getServiceId().contains("SVRO")){
+                continue;
+            }
             usingServiceYear = Integer.parseInt(booking.getStartDate().substring(6));
             if (usingServiceYear == year) {
                 customerStackByYear.add(booking.getCustomer());

@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class FacilityRegexAndException {
     static Scanner scanner = new Scanner(System.in);
-    static String facilityPath = "src\\_00_case_study\\data\\facility.csv";
     public static final String REGEX_BONUS_SERVICE = "^[a-zA-Z\\s]*$";
     public static final String REGEX_ID_VILLA = "(SVVL)[-][\\d]{4}";
     public static final String REGEX_ID_HOUSE = "(SVHO)[-][\\d]{4}";
@@ -20,56 +19,6 @@ public class FacilityRegexAndException {
     public static final String REGEX_POOL_AREA = "^[1-2][0-9]$";
     public static final String REGEX_NAME = "^[a-zA-Z\\s]*$";
 
-    public static Villa inputNewVilla() {
-        List<String[]> list = ReadAndWrite.readListCsv(facilityPath);
-
-        String villaId = inputVillaId(list);
-        String serviceName = inputServiceName();
-        double useArea = inputUseArea();
-        int rentalPrice = inputRentalPrice();
-        int maxRentalPeople = inputMaxRentalPeople();
-        String rentalStyle = inputRentalStyle();
-        String villaStandard = inputVillaStandard();
-        double poolArea = inputPoolArea();
-        int floor = inputFloor();
-
-        Villa villa = new Villa(villaId, serviceName, useArea, rentalPrice,
-                maxRentalPeople, rentalStyle, villaStandard, poolArea, floor);
-        return villa;
-    }
-
-    public static House inputNewHouse() {
-        List<String[]> list = ReadAndWrite.readListCsv(facilityPath);
-
-        String houseId = inputHouseId(list);
-        String serviceName = inputServiceName();
-        double useArea = inputUseArea();
-        int rentalPrice = inputRentalPrice();
-        int maxRentalPeople = inputMaxRentalPeople();
-        String rentalStyle = inputRentalStyle();
-        String houseStandard = inputHouseStandard();
-        int floor = inputFloor();
-
-        House house = new House(houseId, serviceName, useArea, rentalPrice,
-                maxRentalPeople, rentalStyle, houseStandard, floor);
-        return house;
-    }
-
-    public static Room inputNewRoom() {
-        List<String[]> list = ReadAndWrite.readListCsv(facilityPath);
-
-        String roomId = inputRoomId(list);
-        String serviceName = inputServiceName();
-        double useArea = inputUseArea();
-        int rentalPrice = inputRentalPrice();
-        int maxRentalPeople = inputMaxRentalPeople();
-        String rentalStyle = inputRentalStyle();
-        String freeBonusService = inputFreeBonusService();
-
-        Room room = new Room(roomId, serviceName, useArea, rentalPrice,
-                maxRentalPeople, rentalStyle, freeBonusService);
-        return room;
-    }
 
     public static String inputVillaId(List<String[]> list) {
         String villaId;

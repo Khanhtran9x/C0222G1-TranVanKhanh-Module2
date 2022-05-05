@@ -16,6 +16,32 @@ public class EmployeeServiceImpl implements EmployeeService {
     static String path = "src\\_00_case_study\\data\\employee.csv";
     static Employee employee;
 
+    public List<Employee> readFile() {
+        List<Employee> list = new ArrayList<>();
+        stringList = ReadAndWrite.readListCsv(path);
+        for (String[] strArr : stringList) {
+            employee = new Employee(strArr);
+            list.add(employee);
+        }
+        return list;
+    }
+
+    public Employee inputNewEmployee() {
+        List<String[]> list = ReadAndWrite.readListCsv(path);
+        int id =  PersonRegexAndException.inputId(list);
+        String name =  PersonRegexAndException.inputName();
+        String dateOfBirth =  PersonRegexAndException.inputDateOfBirth();
+        String address =  PersonRegexAndException.inputAddress();
+        String gender =  PersonRegexAndException.inputGender();
+        String idCard =  PersonRegexAndException.inputIdCard();
+        String email =  PersonRegexAndException.inputEmail();
+        String level =  PersonRegexAndException.inputEmployeeLevel();
+        String position =  PersonRegexAndException.inputEmployeePosition();
+        int salary =  PersonRegexAndException.inputEmployeeSalary();
+
+        return new Employee(id, name, dateOfBirth, address, gender, idCard, email, level, position, salary);
+    }
+
     @Override
     public void display() {
         employeeList = readFile();
@@ -31,20 +57,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void addNew() {
         employeeList = readFile();
-        Employee employee = PersonRegexAndException.inputNewEmployee();
+        Employee employee = inputNewEmployee();
         employeeList.add(employee);
         ReadAndWrite.writeListCsv(employeeList, path);
         System.out.println("Added employee successfully");
-    }
-
-    public List<Employee> readFile() {
-        List<Employee> list = new ArrayList<>();
-        stringList = ReadAndWrite.readListCsv(path);
-        for (String[] strArr : stringList) {
-            employee = new Employee(strArr);
-            list.add(employee);
-        }
-        return list;
     }
 
     @Override
@@ -52,6 +68,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeList = readFile();
         int id;
         int count = 0;
+        Employee employee;
 
         try {
             System.out.println("Input Employee ID to edit");
@@ -64,8 +81,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getId() == (id)) {
-                Employee employee = PersonRegexAndException.inputNewEmployee();
-                employeeList.set(i, employee);
+                employeeList.remove(i);
+                ReadAndWrite.writeListCsv(employeeList, path);
+                employee = inputNewEmployee();
+                employeeList.add(i, employee);
                 count++;
                 break;
             }
