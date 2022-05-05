@@ -17,23 +17,34 @@ public class House extends Facility{
         this.floor = floor;
     }
 
-    @Override
-    public String toString() {
-        return "House{" + "id facility=" + super.getFacilityId()+
-                ", service name=" +super.getServiceName() +
-                ", user area=" + super.getUseArea() +
-                ", rental price=" + super.getRentalPrice() +
-                ", max rental people=" + super.getMaxRentalPeople() +
-                ", rental style=" + super.getRentalStyle() +
-                "houseStandard='" + houseStandard + '\'' +
-                ", floor=" + floor +
-                '}';
+    public House(String[] arr){
+        super(arr[0],arr[1],Double.parseDouble(arr[2]),Integer.parseInt(arr[3]),Integer.parseInt(arr[4]),arr[5]);
+        this.houseStandard = arr[6];
+        this.floor = Integer.parseInt(arr[7]);
     }
 
     @Override
-    public String toStringToWrite() {
-        return this.getFacilityId() + "," + this.getServiceName() + "," + this.getUseArea() + "," + this.getRentalPrice() +
-                "," + this.getMaxRentalPeople() + "," + this.getRentalStyle() +
-                "," + this.houseStandard + "," + this.floor;
+    public String toString() {
+        return this.getFacilityId() + ","
+                + this.getServiceName() + ","
+                + this.getUseArea() + ","
+                + this.getRentalPrice() + ","
+                + this.getMaxRentalPeople() + ","
+                + this.getRentalStyle() + ","
+                + this.houseStandard + ","
+                + this.floor;
+    }
+
+    @Override
+    public String getInfo() {
+        return "--HOUSE-- \n"
+                + "Facility ID: " + this.getFacilityId() + "\n"
+                + "Service name: " + this.getServiceName() + "\n"
+                + "Use area: " + this.getUseArea() + "\n"
+                + "Rental price: " + this.getRentalPrice() + "\n"
+                + "Max rental people: " + this.getMaxRentalPeople() + "\n"
+                + "Rental style: " + this.getRentalStyle() + "\n"
+                + "House standard: " + this.houseStandard + "\n"
+                + "Floor: " + this.floor + "\n";
     }
 }

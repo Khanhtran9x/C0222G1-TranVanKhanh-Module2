@@ -4,34 +4,51 @@ import _00_case_study.model.Customer;
 import _00_case_study.service.itf.CustomerService;
 import _00_case_study.utils.ReadAndWrite;
 import _00_case_study.utils.PersonRegexAndException;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CustomerServiceImpl implements CustomerService {
-    static List<Customer> customerList;
+    static List<Customer> customerList = new ArrayList<>();
+    static List<String[]> stringList;
     static Scanner scanner = new Scanner(System.in);
     static String path = "src\\_00_case_study\\data\\customer.csv";
+    static Customer customer;
+
+    public List<Customer> readFile(String path) {
+        List<Customer> list = new ArrayList<>();
+        stringList = ReadAndWrite.readListCsv(path);
+        for (String[] strArr : stringList) {
+            customer = new Customer(strArr);
+            list.add(customer);
+        }
+        return list;
+    }
 
     @Override
     public void display() {
-        customerList = ReadAndWrite.readCustomerCsv(path);
-        for (Customer customer : customerList) {
-            System.out.println(customer.toString());
+        customerList = readFile(path);
+        if (customerList.isEmpty()) {
+            System.err.println("Customer list is empty, please input a new one");
+        } else {
+            for (Customer customer : customerList) {
+                System.out.println(customer.getInfo());
+            }
         }
     }
 
     @Override
     public void addNew() {
-        customerList = ReadAndWrite.readCustomerCsv(path);
+        customerList = readFile(path);
         Customer customer = PersonRegexAndException.inputNewCustomer();
         customerList.add(customer);
-        ReadAndWrite.writeCustomerCsv(customerList, path);
+        ReadAndWrite.writeListCsv(customerList, path);
+        System.out.println("Added employee successfully");
     }
 
     @Override
     public void edit() {
-        customerList = ReadAndWrite.readCustomerCsv(path);
+        customerList = readFile(path);
         int id;
         int count = 0;
 
@@ -51,15 +68,18 @@ public class CustomerServiceImpl implements CustomerService {
                 break;
             }
         }
+
         if (count == 0) {
             System.err.println("The ID you input does not exist");
         }
-        ReadAndWrite.writeCustomerCsv(customerList, path);
+
+        ReadAndWrite.writeListCsv(customerList, path);
+        System.out.println("Edited employee successfully");
     }
 
     @Override
     public void remove() {
-        customerList = ReadAndWrite.readCustomerCsv(path);
+        customerList = readFile(path);
         int id;
         int count = 0;
 
@@ -78,9 +98,11 @@ public class CustomerServiceImpl implements CustomerService {
                 break;
             }
         }
+
         if (count == 0) {
             System.err.println("The ID you input does not exist");
         }
-        ReadAndWrite.writeCustomerCsv(customerList, path);
+
+        ReadAndWrite.writeListCsv(customerList, path);
     }
 }

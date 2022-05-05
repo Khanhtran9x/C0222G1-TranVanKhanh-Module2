@@ -1,10 +1,13 @@
 package _00_case_study.model;
 
+import _00_case_study.service.impl.CustomerServiceImpl;
 import _00_case_study.utils.ReadAndWrite;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
 
 public class Booking {
+    CustomerServiceImpl customerService = new CustomerServiceImpl();
     private int bookingId;
     private String startDate;
     private String endDate;
@@ -19,6 +22,15 @@ public class Booking {
         this.customerId = customerId;
         this.serviceId = serviceId;
         this.serviceName = serviceName;
+    }
+
+    public Booking(String[] strArr) {
+        this.bookingId = Integer.parseInt(strArr[0]);
+        this.startDate = strArr[1];
+        this.endDate = strArr[2];
+        this.customerId = Integer.parseInt(strArr[3]);
+        this.serviceId = strArr[4];
+        this.serviceName = strArr[5];
     }
 
     public int getBookingId() {
@@ -54,7 +66,7 @@ public class Booking {
     }
 
     public Customer getCustomer(){
-        List<Customer> customerList = ReadAndWrite.readCustomerCsv("src\\_00_case_study\\data\\customer.csv");
+        List<Customer> customerList = customerService.readFile("src\\_00_case_study\\data\\customer.csv");
         for (Customer customer: customerList) {
             if (customer.getId() == customerId){
                 return customer;
@@ -81,16 +93,20 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Booking{" +
-                "bookingId=" + bookingId +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", customerId=" + customerId +
-                ", serviceId='" + serviceId + '\'' +
-                ", serviceName='" + serviceName + '\'' +
-                '}';
+        return bookingId + ","
+                + startDate + ","
+                + endDate + ","
+                + customerId + ","
+                + serviceId + ","
+                + serviceName;
     }
-    public String toStringToWrite(){
-        return bookingId + "," + startDate + "," + endDate + "," + customerId + "," + serviceId + "," + serviceName;
+    public String getInfo(){
+        return "--BOOKING-- \n"
+                + "Booking ID: " + bookingId + "\n"
+                + "Start date: " + startDate + "\n"
+                + "End date: " + endDate + "\n"
+                + "Customer ID: " +customerId + "\n"
+                + "Service ID: " + serviceId + "\n"
+                + "Service name: " + serviceName + "\n";
     }
 }

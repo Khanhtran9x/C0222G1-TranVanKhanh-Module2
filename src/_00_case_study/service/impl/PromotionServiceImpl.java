@@ -2,23 +2,22 @@ package _00_case_study.service.impl;
 
 import _00_case_study.model.Booking;
 import _00_case_study.model.Customer;
-import _00_case_study.utils.ReadAndWrite;
 
 import java.util.*;
 
 public class PromotionServiceImpl {
+    BookingServiceImpl bookingService = new BookingServiceImpl();
     static Set<Booking> bookingSet;
     static Scanner scanner = new Scanner(System.in);
     static List<Customer> customerList;
-    static Stack<Customer> customerStackByYear = new Stack<>();
+    static Stack<Customer> customerStackByYear;
+    static String bookingPath = "src\\_00_case_study\\data\\booking.csv";
 
-    static {
-        customerList = ReadAndWrite.readCustomerCsv("src\\_00_case_study\\data\\customer.csv");
-        bookingSet = ReadAndWrite.readBookingCsv("src\\_00_case_study\\data\\booking.csv");
-    }
 
     public void displayCustomerUseService() {
+        bookingSet = bookingService.readSetFile(bookingPath);
         customerStackByYear = new Stack<>();
+
         System.out.println("Input the year of using service");
         int year = Integer.parseInt(scanner.nextLine());
         int usingServiceYear;
@@ -31,7 +30,7 @@ public class PromotionServiceImpl {
         }
         System.out.println("Customer list using service in " + year);
         for (Customer customer : customerStackByYear) {
-            System.out.println(customer.toString());
+            System.out.println(customer.getInfo());
         }
     }
 
@@ -78,19 +77,19 @@ public class PromotionServiceImpl {
 
         System.out.println("List of customers receiving voucher 10%: ");
         for (Customer customer : customerListReceiveVoucher10) {
-            System.out.println(customer.toString());
+            System.out.println(customer.getInfo());
         }
         System.out.println();
 
         System.out.println("List of customers receiving voucher 20%: ");
         for (Customer customer : customerListReceiveVoucher20) {
-            System.out.println(customer.toString());
+            System.out.println(customer.getInfo());
         }
         System.out.println();
 
         System.out.println("List of customers receiving voucher 50%: ");
         for (Customer customer : customerListReceiveVoucher50) {
-            System.out.println(customer.toString());
+            System.out.println(customer.getInfo());
         }
     }
 }

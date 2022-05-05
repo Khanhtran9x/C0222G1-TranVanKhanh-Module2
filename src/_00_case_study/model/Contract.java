@@ -15,6 +15,14 @@ public class Contract {
         this.customerId = customerId;
     }
 
+    public Contract(String[] strArr) {
+        this.contractId = Integer.parseInt(strArr[0]);
+        this.bookingId = Integer.parseInt(strArr[1]);
+        this.deposit = Integer.parseInt(strArr[2]);
+        this.totalPay = Integer.parseInt(strArr[3]);
+        this.customerId = Integer.parseInt(strArr[4]);
+    }
+
     public int getContractId() {
         return contractId;
     }
@@ -49,16 +57,19 @@ public class Contract {
 
     @Override
     public String toString() {
-        return "Contract{" +
-                "contractId=" + contractId +
-                ", bookingId=" + bookingId +
-                ", deposit=" + deposit +
-                ", totalPay=" + totalPay +
-                ", customerId=" + customerId +
-                '}';
+        return contractId + ","
+                + bookingId + ","
+                + deposit + ","
+                + totalPay + ","
+                + customerId;
     }
 
-    public String toStringToWrite(){
-        return contractId + "," + bookingId + "," + deposit + "," + totalPay + "," + customerId;
+    public String getInfo(){
+        return  "--CONTRACT-- \n"
+                + "Contract Id: " + contractId + "\n"
+                + "Booking Id: " + bookingId + "\n"
+                + "Deposit Id: " + deposit + "\n"
+                + "Total pay: " + totalPay + "\n"
+                + "Contract Id: " + customerId + "\n";
     }
 }

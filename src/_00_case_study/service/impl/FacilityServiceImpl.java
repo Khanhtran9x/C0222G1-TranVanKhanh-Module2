@@ -8,25 +8,24 @@ import _00_case_study.utils.ReadAndWrite;
 import java.util.*;
 
 public class FacilityServiceImpl implements FacilityService {
-    private Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap<>();
-    static List<House> houseList = new LinkedList<>();
-    static List<Villa> villaList = new LinkedList<>();
-    static List<Room> roomList = new LinkedList<>();
-    String housePath = "src\\_00_case_study\\data\\house.csv";
-    String villaPath = "src\\_00_case_study\\data\\villa.csv";
-    String roomPath = "src\\_00_case_study\\data\\room.csv";
-    String facilityPath = "src\\_00_case_study\\data\\facility.csv";
+    private Map<Facility, Integer> facilityIntegerMap;
+    static List<String[]> stringList;
+    static String path = "src\\_00_case_study\\data\\facility.csv";
+    static Villa villa;
+    static House house;
+    static Room room;
 
 
     @Override
     public void display() {
-        facilityIntegerMap = ReadAndWrite.readFacilityCsv(facilityPath);
+        facilityIntegerMap = readFile();
         try {
             if (facilityIntegerMap.size() == 0){
                 throw new NullPointerException();
             } else {
                 for (Map.Entry<Facility, Integer> map : facilityIntegerMap.entrySet()) {
-                    System.out.println("Service name = " + map.getKey().getFacilityId() + " , rent times = " + map.getValue());
+                    System.out.println("--SERVICE-- \n" + map.getKey().getInfo() + "RENT TIMES: " + map.getValue());
+                    System.out.println("\n");
                 }
             }
         } catch (NullPointerException e) {
@@ -36,7 +35,7 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void displayMaintain() {
-        facilityIntegerMap = ReadAndWrite.readFacilityCsv(facilityPath);
+        facilityIntegerMap = readFile();
         int count = 0;
 
         System.out.println("List of facility needed to be maintained due to use of service more than 5 consecutive times");
@@ -53,41 +52,57 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void addNewHouse() {
-        facilityIntegerMap = ReadAndWrite.readFacilityCsv(facilityPath);
-        houseList = ReadAndWrite.readHouseCsv(housePath);
+        facilityIntegerMap = readFile();
+
         House house = FacilityRegexAndException.inputNewHouse();
-        houseList.add(house);
         facilityIntegerMap.put(house, 0);
-        ReadAndWrite.writeHouseCsv(houseList, housePath);
-        ReadAndWrite.writeFacilityCsv(facilityIntegerMap, facilityPath);
+
+        ReadAndWrite.writeMapCsv(facilityIntegerMap, path);
         System.out.println("Added house successfully");
     }
 
     @Override
     public void addNewVilla() {
-        facilityIntegerMap = ReadAndWrite.readFacilityCsv(facilityPath);
-        villaList = ReadAndWrite.readVillaCsv(villaPath);
+        facilityIntegerMap = readFile();
 
         Villa villa = FacilityRegexAndException.inputNewVilla();
-        villaList.add(villa);
         facilityIntegerMap.put(villa, 0);
 
-        ReadAndWrite.writeVillaCsv(villaList, villaPath);
-        ReadAndWrite.writeFacilityCsv(facilityIntegerMap, facilityPath);
+        ReadAndWrite.writeMapCsv(facilityIntegerMap, path);
         System.out.println("Added villa successfully");
     }
 
     @Override
     public void addNewRoom() {
-        facilityIntegerMap = ReadAndWrite.readFacilityCsv(facilityPath);
-        roomList = ReadAndWrite.readRoomCsv(roomPath);
+        facilityIntegerMap = readFile();
 
         Room room = FacilityRegexAndException.inputNewRoom();
-        roomList.add(room);
         facilityIntegerMap.put(room, 0);
 
-        ReadAndWrite.writeRoomCsv(roomList, roomPath);
-        ReadAndWrite.writeFacilityCsv(facilityIntegerMap, facilityPath);
+        ReadAndWrite.writeMapCsv(facilityIntegerMap, path);
         System.out.println("Added room successfully");
+    }
+
+    public Map<Facility, Integer> readFile() {
+        Map<Facility, Integer >facilityMap = new LinkedHashMap<>();
+        stringList = ReadAndWrite.readListCsv(path);
+
+        for (String[] strArr : stringList) {
+            if (strArr[0].contains("SVVL")){
+                villa = new Villa(strArr);
+                facilityMap.put(villa, Integer.parseInt(strArr[9]));
+            }
+
+            if (strArr[0].contains("SVHO")){
+                house = new House(strArr);
+                facilityMap.put(house, Integer.parseInt(strArr[8]));
+            }
+
+            if (strArr[0].contains("SVRO")){
+                room = new Room(strArr);
+                facilityMap.put(room, Integer.parseInt(strArr[7]));
+            }
+        }
+        return facilityMap;
     }
 }

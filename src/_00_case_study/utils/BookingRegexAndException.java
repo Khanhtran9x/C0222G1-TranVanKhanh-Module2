@@ -86,7 +86,7 @@ public class BookingRegexAndException {
     }
 
     public static int inputTotalPay(){
-        System.out.println("Input deposit money:");
+        System.out.println("Input total pay:");
         int totalPay;
 
         while (true){

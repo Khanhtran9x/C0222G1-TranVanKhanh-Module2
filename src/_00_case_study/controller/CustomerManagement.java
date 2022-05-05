@@ -16,7 +16,7 @@ public class CustomerManagement {
                     "3.\tEdit customer\n" +
                     "4.\tReturn main menu\n" +
                     "5.\tExit\n");
-            System.out.println("Nhập vào lựa chọn: ");
+            System.out.println("Input your choice: ");
             try {
                 choice = scanner.nextInt();
                 switch (choice) {

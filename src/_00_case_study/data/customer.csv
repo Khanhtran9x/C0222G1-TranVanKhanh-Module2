@@ -1,7 +1,3 @@
-ID,NAME,DATE OF BIRTH,ADDRESS,GENDER,ID CARD,EMAIL,TYPE
-1,Khanh,15/07/1995,Quang Binh,Male,123231,khanh@gmail.com,Diamond
-2,Viet,15/06/1997,Hue,Male,122323,viet@gmail.com,Gold
-3,An,15/06/1997,Quang Tri,Male,123132,an@gmail.com,Silver
-4,Nhung,05/10/1997,Quang Binh,Female,1232321,nhung@gmail.com,Member
-5,Hoang Hai,16/09/1998,Da Nang,Male,2321313,hai@mgmail.com,Member
-6,Hoang Huyen,28/03/1995,Dong Ha,Female,21321313,huyenhoang@gmail.com,Diamond
+1,Khanh Tran,15/07/1995,Quang Binh,Male,1923121231,khanh@gmail.com,Diamond
+2,Hong Nhung,05/10/1997,Quang Binh,Female,1232131311,nhung@gmail.com,Platinum
+3,Hoang Huyen,28/03/1995,Quang Tri,Female,1232131312,hoanghuyen@gmail.com,Gold

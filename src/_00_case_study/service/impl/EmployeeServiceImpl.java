@@ -11,28 +11,45 @@ import java.util.Scanner;
 
 public class EmployeeServiceImpl implements EmployeeService {
     static List<Employee> employeeList = new ArrayList<>();
-    Scanner scanner = new Scanner(System.in);
-    String path = "src\\_00_case_study\\data\\employee.csv";
+    static List<String[]> stringList;
+    static Scanner scanner = new Scanner(System.in);
+    static String path = "src\\_00_case_study\\data\\employee.csv";
+    static Employee employee;
 
     @Override
     public void display() {
-        employeeList = ReadAndWrite.readEmployeeCsv(path);
-        for (Employee employee : employeeList) {
-            System.out.println(employee.toString());
+        employeeList = readFile();
+        if (employeeList.isEmpty()) {
+            System.err.println("Employee list is empty, please input a new one");
+        } else {
+            for (Employee employee : employeeList) {
+                System.out.println(employee.getInfo());
+            }
         }
     }
 
     @Override
     public void addNew() {
-        employeeList = ReadAndWrite.readEmployeeCsv(path);
+        employeeList = readFile();
         Employee employee = PersonRegexAndException.inputNewEmployee();
         employeeList.add(employee);
-        ReadAndWrite.writeEmployeeCsv(employeeList, path);
+        ReadAndWrite.writeListCsv(employeeList, path);
+        System.out.println("Added employee successfully");
+    }
+
+    public List<Employee> readFile() {
+        List<Employee> list = new ArrayList<>();
+        stringList = ReadAndWrite.readListCsv(path);
+        for (String[] strArr : stringList) {
+            employee = new Employee(strArr);
+            list.add(employee);
+        }
+        return list;
     }
 
     @Override
     public void edit() {
-        employeeList = ReadAndWrite.readEmployeeCsv(path);
+        employeeList = readFile();
         int id;
         int count = 0;
 
@@ -56,7 +73,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (count == 0) {
             System.err.println("The ID you input does not exist");
         }
-        ReadAndWrite.writeEmployeeCsv(employeeList, path);
+        ReadAndWrite.writeListCsv(employeeList, path);
     }
 
     @Override

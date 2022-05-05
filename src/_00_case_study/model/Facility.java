@@ -78,5 +78,5 @@ public abstract class Facility {
                 '}';
     }
 
-    public abstract String toStringToWrite();
+    public abstract String getInfo();
 }

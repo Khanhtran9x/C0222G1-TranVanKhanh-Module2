@@ -20,22 +20,15 @@ public class Villa extends Facility{
         this.floor = floor;
     }
 
-    @Override
-    public String toString() {
-        return "Villa{" + "id facility=" + super.getFacilityId()+
-                ", service name=" +super.getServiceName() +
-                ", user area=" + super.getUseArea() +
-                ", rental price=" + super.getRentalPrice() +
-                ", max rental people=" + super.getMaxRentalPeople() +
-                ", rental style=" + super.getRentalStyle() +
-                ", villa Standard=" + villaStandard +
-                ", pool Area=" + poolArea +
-                ", floor=" + floor +
-                '}';
+    public Villa(String[] arr){
+        super(arr[0],arr[1],Double.parseDouble(arr[2]),Integer.parseInt(arr[3]),Integer.parseInt(arr[4]),arr[5]);
+        this.villaStandard = arr[6];
+        this.poolArea = Double.parseDouble(arr[7]);
+        this.floor = Integer.parseInt(arr[8]);
     }
 
     @Override
-    public String toStringToWrite() {
+    public String toString() {
         return this.getFacilityId() + ","
                 + this.getServiceName() + ","
                 + this.getUseArea() + ","
@@ -45,5 +38,19 @@ public class Villa extends Facility{
                 + this.villaStandard + ","
                 + this.poolArea + ","
                 + this.floor;
+    }
+
+    @Override
+    public String getInfo() {
+        return "--VILLA-- \n"
+                + "Facility ID: " + this.getFacilityId() + "\n"
+                + "Service name: " + this.getServiceName() + "\n"
+                + "Use area: " + this.getUseArea() + "\n"
+                + "Rental price: " + this.getRentalPrice() + "\n"
+                + "Max rental people: " + this.getMaxRentalPeople() + "\n"
+                + "Rental style: " + this.getRentalStyle() + "\n"
+                + "Villa standard: " + this.villaStandard + "\n"
+                + "Pool area: " + this.poolArea + "\n"
+                + "Floor: " + this.floor+ "\n";
     }
 }
